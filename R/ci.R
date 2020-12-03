@@ -5,7 +5,7 @@
 
 
 ci <-
-function(x, y, wt = NULL, type = c("CI", "CIg", "CIc")) {
+function(x, y, wt = NULL, type = c("CI", "CIg", "CIc", "CIw")) {
 
 	# x: income, wealth,... variable (required)
 	# y: health variable (required)
@@ -13,6 +13,7 @@ function(x, y, wt = NULL, type = c("CI", "CIg", "CIc")) {
 	#	"CI" : relative concentration index (by default)
 	#	"CIg": generalized concentration index                     		
 	# "CIc": concentration index with Erreygers Correction
+  # "CIw": Wagstaff concentration index, suitable for binary and bounded variables
 	# wt: sampling weights (optional)
 	
 	# if no wt argument is given (default), set all sampling weights to 1.
@@ -67,8 +68,10 @@ function(x, y, wt = NULL, type = c("CI", "CIg", "CIc")) {
                 concentration_index <- concentration_index *  ybar
       } else if (type == "CIc"){
                 concentration_index <- 4 * concentration_index *  ybar / 
-                                      (max(y, na.rm = TRUE) - min(y, na.rm = TRUE))
+                                      (max(y, na.rm = TRUE) - min(y, na.rm = TRUE)) 
 
+      } else if(type == "CIw"){
+          concentration_index <- concentration_index/(1-mean(y*wt, na.rm=T))
       }
 
 

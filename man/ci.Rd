@@ -14,7 +14,7 @@ This function calculates the relative concentration index (Kakwani et al), the g
 }
 
 \usage{
-ci(x, y, wt = NULL, type = c("CI", "CIg", "CIc"))
+ci(x, y, wt = NULL, type = c("CI", "CIg", "CIc", "CIw"))
 
 concentration_index(object)
 
@@ -35,7 +35,7 @@ a numeric variable containing the wealth measure.
 a numeric variable containing the sample weights. Defaults to \code{NULL}, which is equal to a constant sample weight for all cases.
 }
   \item{type}{
-the type of concentration index to be calculated: relative concentration index (\code{CI}), generalized concentration index (\code{CIg}), or concentration index with Erreygers Correction \code{CIc}.
+the type of concentration index to be calculated: relative concentration index (\code{CI}), generalized concentration index (\code{CIg}), concentration index with Erreygers Correction \code{CIc}, or  Wagstaff concentration index suitable for bounded and binary outcomes \code{CIw}
 }
 
   \item{object}{
@@ -62,7 +62,7 @@ A number of extractor functions have been defined. The \code{plot} function retu
 \item{fractional_rank}{weighted fractional rank for each case}
 \item{outcome}{health measure for each case}
 \item{n}{number of cases}
-\item{call}{the original call to \code{RCI}}
+\item{call}{the original call to \code{ci}}
 For \code{plot.hci}, a concentration plot.
 }
 \references{
@@ -72,6 +72,7 @@ Erreygers, G. (2009). Correcting the concentration index. Journal of health econ
 
 Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalities in health: measurement, computation, and statistical inference.Journal of econometrics, 77(1), 87-103.
 
+Owen O., O’Neill S., Van Ourti T., & Walsh B. (2016). Conindex: Estimation of Concentration Indices. The Stata Journal 16(1): 112–138.
 }
 \author{
 Saveria Willimes, Peter Konings and Niko Speybroeck
