@@ -33,6 +33,7 @@ S3method(confint, hci)
 S3method(plot, hci)
 S3method(print, hci)
 S3method(summary, hci)
+S3method(as.double, hci)
 
 S3method(contribution, coxph)
 S3method(contribution, glm)

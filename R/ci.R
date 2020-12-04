@@ -71,7 +71,7 @@ function(x, y, wt = NULL, type = c("CI", "CIg", "CIc", "CIw")) {
                                       (max(y, na.rm = TRUE) - min(y, na.rm = TRUE)) 
 
       } else if(type == "CIw"){
-          concentration_index <- concentration_index/(1-mean(y*wt, na.rm=T))
+          concentration_index <- concentration_index/(1-ybar)
       }
 
 
