@@ -1,7 +1,7 @@
 Package: rineq
 Title: Statistical Analysis of Health Inequalities
 Version: 0.0.1
-Date: 2017-10-16
+Date: 2020-12-04
 Authors@R: c(person("Brecht", "Devleesschauwer", role = c("aut", "cre"),
 	                email = "brechtdv@gmail.com"),
              person("Saveria", "Willimès", role = c("aut"),
@@ -11,7 +11,9 @@ Authors@R: c(person("Brecht", "Devleesschauwer", role = c("aut", "cre"),
              person("Peter", "Konings", role = c("aut"),
 	                email = "peter.konings@ki.se"),
              person("Niko", "Speybroeck", role = c("aut"),
-	                email = "niko.speybroeck@uclouvain.be"))
+	                email = "niko.speybroeck@uclouvain.be"),
+			 person("Kaspar", "Meili", role = c("ctb"),
+	                email = "meilikaspar@yahoo.de"))
 Author: Brecht Devleesschauwer [aut, cre],
   Saveria Willimès [aut],
   Carine Van Malderen [aut],
