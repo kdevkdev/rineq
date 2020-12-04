@@ -4,7 +4,7 @@ Version: 0.0.1
 Date: 2020-12-04
 Authors@R: c(person("Brecht", "Devleesschauwer", role = c("aut", "cre"),
 	                email = "brechtdv@gmail.com"),
-             person("Saveria", "Willimès", role = c("aut"),
+             person("Saveria", "WillimÃ¨s", role = c("aut"),
 	                email = "swillimes@yahoo.com"),
              person("Carine", "Van Malderen", role = c("aut"),
 	                email = "carine.vanmalderen@uclouvain.be"),
@@ -15,7 +15,7 @@ Authors@R: c(person("Brecht", "Devleesschauwer", role = c("aut", "cre"),
 			 person("Kaspar", "Meili", role = c("ctb"),
 	                email = "meilikaspar@yahoo.de"))
 Author: Brecht Devleesschauwer [aut, cre],
-  Saveria Willimès [aut],
+  Saveria WillimÃ¨s [aut],
   Carine Van Malderen [aut],
   Peter Konings [aut],
   Niko Speybroeck [aut]

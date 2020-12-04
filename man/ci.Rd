@@ -72,7 +72,7 @@ Erreygers, G. (2009). Correcting the concentration index. Journal of health econ
 
 Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalities in health: measurement, computation, and statistical inference.Journal of econometrics, 77(1), 87-103.
 
-Owen O., O’Neill S., Van Ourti T., & Walsh B. (2016). Conindex: Estimation of Concentration Indices. The Stata Journal 16(1): 112–138.
+Owen O., O'Neill S., Van Ourti T., & Walsh B. (2016). Conindex: Estimation of Concentration Indices. The Stata Journal 16(1): 112-138.
 }
 \author{
 Saveria Willimes, Peter Konings and Niko Speybroeck
