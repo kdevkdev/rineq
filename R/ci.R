@@ -7,10 +7,10 @@
 #' @param weights Optional, used to weigh the observations. Defaults to equal weights for all observations. 
 #' @param type The type of concentration index to be calculated: relative concentration index (\code{CI}, default), generalized concentration index (\code{CIg}), concentration index with Erreygers Correction \code{CIc}, or Wagstaff concentration index suitable for bounded and binary outcomes \code{CIw}
 #' @param method Defines the calculaqtion method. 
-#'   \code{linreg_delta}: Based on linear regression   
-#'   \code{linreg_convenience})
-#'   \code{cov_convenience}
-#'   \code{direct}
+#'   \code{linreg_delta}: Based on linear regression without transforming the left hand side variable. Computes correct standard errors that take into account the sampling variability of the estimate of the mean (O’Donnell et al. 2008, Owen et al. 2016)    
+#'   \code{linreg_convenience}): Based on simpler regression with transformed left hand side variable. Standard errors do not take into account thee sampling variability of the estimate of the mean(O’Donnell et al. 2008, Owen et al. 2016)
+#'   \code{cov_convenience}: Based on covariance. Equivalent to linreg_convenience (O’Donnell et al. 2008, Owen et al. 2016)
+#'   \code{direct}: Using direct formula, standard errors do no take weighting appropriately into account  (O’Donnell et al. 2008, Kakwani et al. 1997) 
 #' @param df_correction If \code{TRUE} (default), calculates the concentration index based on the population variance (backcalculated from the sample variance).
 #' @param robust_se Uses robust standard errors if \code{TRUE}. Only available for the linreg_* type methods. Requires the sandwich package.
 #' @param rse_type  Type argument for the \code{vcovHC()}. 'HC3' is suggested default, set to 'HC1' for stata compatibility. See \code{?sandwich::vcovHC()} for options. 
@@ -33,7 +33,7 @@
 #' @references Erreygers, G. (2009). Correcting the concentration index. Journal of health economics, 28(2), 504-515
 #' @references Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalities in health: measurement, computation, and statistical inference.Journal of econometrics, 77(1), 87-103.
 #' @references O'Donnel, O., O'Neill S., Van Ourti T., & Walsh B. (2016). Conindex: Estimation of Concentration Indices. The Stata Journal 16(1): 112-138.
-#' @references O’Donnell, O., Van Doorslaer, E. , Wagstaff, A., Lindelow, M., 2008. Analyzing Health Equity Using Household Survey Data : A Guide to Techniques and Their Implementation, World Bank Publications. The World Bank.
+#' @references O’Donnell, O., Van Doorslaer, E. , Wagstaff, A., Lindelow, M., 2008. Analyzing Health Equity Using Household Survey Data: A Guide to Techniques and Their Implementation, World Bank Publications. The World Bank.
 #' 
 #' @export
 #' @examples
