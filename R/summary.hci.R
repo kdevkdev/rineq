@@ -1,5 +1,5 @@
-summary.hci <-
-function(object, ...) {
+#' @export
+summary.hci <- function(object, ...) {
     if (!any(class(object) == 'hci')) stop("Object is not of class hci")
     cat("Call:\n")
     print(object$call)

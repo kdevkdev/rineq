@@ -1,3 +1,4 @@
+#' @export
 confint.hci <-
 function(object, parm = NULL, level = 0.95, ...) {
   if (!any(class(object) == 'hci')) stop("Object is not of class hci")

@@ -1,3 +1,5 @@
+#' @method contribution glm
+#' @export
 contribution.glm <-
 function(object, ranker, correction = TRUE) {
     # The ranking variable (wealth, income,...) should be given explicitely.

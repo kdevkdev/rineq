@@ -1,12 +1,18 @@
-## rpart_ci()
-## Recursive Partitioning and Regression Trees using Concentration Index
-## last update: 20/07/2015
-## ------------------------------------------------------------------------#
-
-## Weigthed rank ----------------------------------------------------------#
-
-rank_wt <-
-function(x, wt) {
+#' Calculates the weighted rank
+#'
+#' @param x numeric vector
+#' @param wt weights 
+#'
+#' @author Peter Konings
+#' @references Kakwani \emph{et al}., 1997.
+#' @return A numeric vector containing weighted fractional ranks of the elements of \code{x}.
+#' 
+#' @export 
+#' @examples
+#' x <- sample(1:10, size = 10, replace = TRUE)
+#' x.weight <- seq(0, 1, length.out = 10)
+#' rank_wt(x, wt = x.weight)
+rank_wt <- function(x, wt) {
   n <- length(x)
   r <- vector(length = n)
 
@@ -29,9 +35,7 @@ function(x, wt) {
 
 
 ## Concentration Index ----------------------------------------------------#
-
-CI <- 
-function(y, wt) {
+CI <- function(y, wt) {
   # this aims to have a vector of goodness of length (n-1) as required. 
   # If not specified, CI cannot be calculated for a single-subject node
   # and the vector of goodness is n-2
@@ -50,7 +54,6 @@ function(y, wt) {
 
 ## Generalized Concentration Index ----------------------------------------#
 ## see Clarke and al 2002
-
 CIg  <- 
 function(y, wt) {
   if (length(y) == 2) {
@@ -67,7 +70,6 @@ function(y, wt) {
 
 ## Concentration Index with Erreygers Correction --------------------------#
 ## see Erreygers (2009)
-
 CIc <- function(y, wt) {         
   if (length(y) == 2) {
     cic <- 0
@@ -91,9 +93,7 @@ CIc <- function(y, wt) {
 ##       - does not need to be a deviance: any measure that gets larger
 ##            as the node is less acceptable is fine.
 ##       - the measure underlies cost-complexity pruning, however
-
-eval_ci  <- 
-function(y, wt, parms) {
+eval_ci  <-  function(y, wt, parms) {
   CI_fun <-
   switch(parms,
          "1" = CI,
@@ -131,9 +131,7 @@ function(y, wt, parms) {
 ## The reason for returning a vector of goodness is that the C routine
 ##   enforces the "minbucket" constraint. It selects the best return value
 ##   that is not too close to an edge.
-
-split_ci <-
-function(y, wt, x, parms, continuous) {
+split_ci <- function(y, wt, x, parms, continuous) {
 
   CI_fun <-
   switch(parms,
@@ -201,9 +199,7 @@ function(y, wt, x, parms, continuous) {
 ##   numresp is the number of values produced by the eval routine's "label"
 ##   numy is the number of columns for y
 ##   summary is a function used to print one line in summary.rpart
-
-init_ci <-
-function(y, offset, parms = c("CI", "CIg", "CIc"), wt) {
+init_ci <- function(y, offset, parms = c("CI", "CIg", "CIc"), wt) {
   if (!is.matrix(y)) stop("y must be a matrix")
   if (!ncol(y) == 2) stop("y should have 2 columns")
 
@@ -232,8 +228,53 @@ function(y, offset, parms = c("CI", "CIg", "CIc"), wt) {
 
 ## wrapper function: rpart + concentration index --------------------------#
 
-rpart_ci <-
-function(formula, data, weights, type = c("CI", "CIg", "CIc"),
+#' Recursive Partitioning and Regression Trees using Concentration Index
+#' @title Recursive Partitioning and Regression Trees Using the Concentration Index 
+#'
+#' @usage rpart_ci(formula, data, weights, type = c("CI", "CIg", "CIc"), 
+#'   subset, na.action = na.rpart, model = FALSE, x = FALSE, 
+#'   y = TRUE, control, cost, ...) 
+#'
+#' @param formula A \code{\link{formula}}, with y as a two columns object (the first one must be the wealth variable and the second one the health outcome variable) and no interaction terms. If it's a data frame that is taken as the model frame, see \code{\link{model.frame}}.
+#' @param data An optional data frame in which to interpret the variables named in the formula.
+#' @param weights Optional case weights
+#' @param type One of \code{"CI"}, \code{"CIg"}, \code{"CIc"}. If type is missing, "CI" is chosen as the default action. \code{"CI"} corresponds to the Concentration Index, \code{"CIg"} to Generalized Concentration Index (see Clarke and al, 2002) and \code{"CIc"} to Corrected Concentration Index (see Erreygers, 2009).
+#' @param subset Optional expression saying that only a subset of the rows of the data should be used in the fit.
+#' @param na.action The default action deletes all observations for which y is missing, but keeps those in which one or more predictors are missing.
+#' @param model If logical: keep a copy of the model frame in the result? If the input value for model is a model frame (likely from an earlier call to the rpart function), then this frame is used rather than constructing new data.
+#' @param x Keep a copy of the x matrix in the result.
+#' @param y keep a copy of the dependent variable in the result. If missing and model is supplied this defaults to FALSE.
+#' @param control A list of options that control details of the \code{rpart} algorithm.  See \code{\link{rpart.control}}.
+#' @param cost A vector of non-negative costs, one for each variable in the model. Defaults to one for all variables. These are scalings to be applied when considering splits, so the improvement on splitting on a variable is divided by its cost in deciding which split to choose.
+#' @param ... Arguments to \code{rpart.control} may also be specified in the call to \code{rpart_cil}. They are checked against the list of valid arguments.
+#'
+#' @return An object of class \code{rpart}. See \code{\link{rpart.object}}.
+#'
+#' @references Breiman L., Friedman J. H., Olshen R. A., and Stone, C. J. (1984) \emph{Classification and Regression Trees.} Wadsworth.
+#' @author Saveria Willimes and Brecht Devleesschauwer, adapting from the \code{\link{rpart}} package by Terry M.Therneau and Beth Atkinson.
+#' 
+#' 
+#' @seealso \code{\link{imp}}, \code{\link{rpart.control}}, \code{\link{rpart.object}}, \code{\link{summary.rpart}}, \code{\link{print.rpart}}
+#' 
+#' @import stats
+#' @import rlang
+#' @import rpart
+#' @export 
+#' @examples
+#' data(nigeria)
+#' 
+#' tree <-
+#'   rpart_ci(
+#'     cbind(wealth, zscore1) ~
+#'       quintile + ed + rural + region + male + bord + agechild + agemother,
+#'     data = nigeria,
+#'   weights = nigeria$weight,
+#'     type = "CI")
+#' 
+#' plot(tree, xpd = NA)
+#' text(tree, use.n = TRUE)
+#' 
+rpart_ci <- function(formula, data, weights, type = c("CI", "CIg", "CIc"),
   subset, na.action = na.rpart, model = FALSE, x = FALSE, y = TRUE,
   control, cost, ...) {
 

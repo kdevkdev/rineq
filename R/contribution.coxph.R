@@ -1,3 +1,5 @@
+#' @method contribution coxph
+#' @export
 contribution.coxph <-
 function(object, ranker, correction = TRUE) {
     # The ranking variable (wealth, income,...) should be given explicitely.

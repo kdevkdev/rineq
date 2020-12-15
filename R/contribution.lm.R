@@ -1,3 +1,5 @@
+#' @method contribution lm
+#' @export
 contribution.lm <-
 function(object, ranker, correction = TRUE) {
     # The ranking variable (wealth, income,...) should be given explicitely.

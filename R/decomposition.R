@@ -1,5 +1,14 @@
-decomposition <-
-function(outcome, betas, mm, ranker, wt, correction) {    
+#' @title Decomposition analysis
+#' @param outcome Outcome variable
+#' @param betas  Beta coefficients from regression
+#' @param mm Model matrix from regression
+#' @param ranker Ranking variable
+#' @param wt Weights
+#' @param correction Apply sign correction? 
+#'
+#' @return S3 object of class decomposition
+#' @export
+decomposition <- function(outcome, betas, mm, ranker, wt, correction) {    
     # define an index vector for the rows that are actually used in the model, rownames are strings
     rows <- as.numeric(rownames(mm))
 
@@ -20,7 +29,7 @@ function(outcome, betas, mm, ranker, wt, correction) {
     # use only the observations of the ranking variable that are actually used in the model
     # the intermediate cis returns a list with objects of class hci
     # indices stores the values of the concentration index only
-    cis <- apply(mm[,-1], 2, ci, x = ranker[rows], wt = wt)
+    cis <- apply(mm[,-1], 2, ci, ineqvar = ranker[rows], weights = wt)
     indices <- sapply(cis, concentration_index)
     confints <- sapply(cis, confint)
     

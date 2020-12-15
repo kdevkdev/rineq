@@ -1,7 +1,34 @@
-## imp()
-## Evaluating variable importance in rpart_ci() trees
-## ------------------------------------------------------------------------#
-
+#' Evaluating variable importance in rpart_ci() trees
+#'
+#' @description This function measures the variable importance for objects produced by rpart_ci()
+#' 
+#' @usage imp(object, surrogates = TRUE, competes = FALSE, ...)
+#' 
+#' @param object An object of class \code{\link{rpart}}.
+#' @param surrogates Should surrogate splits contribute to the importance calculation (logical)? Defaults to \code{TRUE}. 
+#' @param competes Should competing splits contribute to the importance calculation (logical)? Defaults to \code{FALSE}.
+#' @param ... Currently ignored.
+#'
+#' @return A data.frame with one row for each predictor variable (ordered by decreasing importance). The first column \code{overall.importance} is the variable importance measure (the total decrease in node impurities) and the second column \code{relative.importance} is the relative importance variable. 
+#' 
+#' @references Breiman, L., Friedman, J., Stone, C. J., & Olshen, R. A. (1984). Classification and regression trees. CRC press.
+#' @author Saveria Willimes
+#' 
+#' 
+#' @export
+#' @examples
+#' 
+#' data(nigeria)
+#' 
+#' tree <-
+#'   rpart_ci(
+#'     cbind(wealth, zscore1) ~
+#'       quintile + ed + rural + region + male + bord + agechild + agemother,
+#'     data = nigeria,
+#'     weights = nigeria$weight,
+#'     type = "CI")
+#' 
+#' imp(tree, surrogates = FALSE, competes = TRUE)
 imp <- 
 function(object, surrogates = TRUE, competes = FALSE, ...) {
 

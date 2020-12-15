@@ -1,3 +1,5 @@
+#' @importFrom graphics polygon
+#' @export
 plot.hci <-
 function(x, ...) {
     if (!any(class(x) == 'hci')) stop("Object is not of class hci")

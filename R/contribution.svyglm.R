@@ -1,3 +1,5 @@
+#' @method contribution svyglm
+#' @export
 contribution.svyglm <-
 function(object, ranker, correction = TRUE) {
     # The ranking variable (wealth, income,...) should be given explicitely.
