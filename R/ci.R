@@ -43,6 +43,9 @@
 #' 
 #' # retrieve value
 #' ci = cicars$concentration_index
+#' 
+#' # obtain confidence intervals
+#' confint(cicars, level = 0.95) 
 #'
 #' # Wagstaff type with binary outcome and robust standard errors that should correspond to Stata's
 #' cicarsb <- ci(cars$speed, cars$dist > 36, type = "CIw", robust_se = TRUE, rse_type = "HC1")
