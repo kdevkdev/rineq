@@ -1,7 +1,7 @@
 #' @method contribution glm
 #' @export
 contribution.glm <-
-function(object, ranker, correction = TRUE) {
+function(object, ranker, correction = TRUE, type = "CI") {
     # The ranking variable (wealth, income,...) should be given explicitely.
     # Throw an error if this is not a numeric one
     if (class(ranker) != "numeric") stop("Not a numeric ranking variable")
@@ -19,6 +19,6 @@ function(object, ranker, correction = TRUE) {
     betas <- coefficients(object)[-1]
     
     # call the backend decomposition function
-    results <- decomposition(outcome, betas, mm, ranker, wt, correction)
+    results <- decomposition(outcome, betas, mm, ranker, wt, correction, citype = type)
     return(results)
 }

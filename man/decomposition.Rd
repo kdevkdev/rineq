@@ -4,12 +4,12 @@
 \alias{decomposition}
 \title{Decomposition analysis}
 \usage{
-decomposition(outcome, betas, mm, ranker, wt, correction)
+decomposition(outcome, betas, mm, ranker, wt, correction, citype = "CI")
 }
 \arguments{
 \item{outcome}{Outcome variable}
 
-\item{betas}{Beta coefficients from regression}
+\item{betas}{Beta coefficients from regression.}
 
 \item{mm}{Model matrix from regression}
 
@@ -18,6 +18,8 @@ decomposition(outcome, betas, mm, ranker, wt, correction)
 \item{wt}{Weights}
 
 \item{correction}{Apply sign correction?}
+
+\item{citype}{CI type to be calculated, defaults to \code{CI}. Use \code{CIw} for binary outcomes.}
 }
 \value{
 S3 object of class decomposition

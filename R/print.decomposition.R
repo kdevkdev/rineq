@@ -7,8 +7,8 @@ function(x, ...) {
   cat("\n")
   
   cat("Decomposition:\n")
-  result <- data.frame(x$contribution)
-  names(result) <- "Contribution (%)"
+  result <- data.frame(x$rel_contribution, x$ci_contribution)
+  colnames(result) <- c("Contribution (%)", "Absolute contribution")
   result$Corrected <- ""
   result$Corrected[x$corrected_coefficients] <- "yes"
   result$Corrected[!x$corrected_coefficients] <- "no"

@@ -26,7 +26,7 @@ Description: Functions to calculate the relative, generalized, and Erreygers
     regression and binary trees.
 Depends: R (>= 3.4.0)
 Imports: stats, rlang, rpart
-Suggests: sandwich, lmtest
+Suggests: sandwich, lmtest, mfx, survey
 License: GPL-2 | GPL-3
 LazyData: true
 RoxygenNote: 7.1.1

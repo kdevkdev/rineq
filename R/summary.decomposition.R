@@ -8,7 +8,7 @@ function(object, ...) {
   cat("\n")
   
   cat("Decomposition:\n")
-  result <- data.frame(object$contribution)
+  result <- data.frame(object$rel_contribution)
   names(result) <- "Contribution (%)"
   result$"Concentration Index" <- c(NA, object$partial_cis)
   result$"lower 5%" <- c(NA, object$confints[1,])

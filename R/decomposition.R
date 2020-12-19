@@ -1,14 +1,15 @@
 #' @title Decomposition analysis
 #' @param outcome Outcome variable
-#' @param betas  Beta coefficients from regression
+#' @param betas  Beta coefficients from regression. 
 #' @param mm Model matrix from regression
 #' @param ranker Ranking variable
 #' @param wt Weights
 #' @param correction Apply sign correction? 
+#' @param citype CI type to be calculated, defaults to \code{CI}. Use \code{CIw} for binary outcomes. 
 #'
 #' @return S3 object of class decomposition
 #' @export
-decomposition <- function(outcome, betas, mm, ranker, wt, correction) {    
+decomposition <- function(outcome, betas, mm, ranker, wt, correction, citype = "CI") {    
     # define an index vector for the rows that are actually used in the model, rownames are strings
     rows <- as.numeric(rownames(mm))
 
@@ -29,7 +30,7 @@ decomposition <- function(outcome, betas, mm, ranker, wt, correction) {
     # use only the observations of the ranking variable that are actually used in the model
     # the intermediate cis returns a list with objects of class hci
     # indices stores the values of the concentration index only
-    cis <- apply(mm[,-1], 2, ci, ineqvar = ranker[rows], weights = wt)
+    cis <- apply(mm[,-1], 2, ci, ineqvar = ranker[rows], weights = wt, type = citype)
     indices <- sapply(cis, concentration_index)
     confints <- sapply(cis, confint)
     
@@ -47,7 +48,7 @@ decomposition <- function(outcome, betas, mm, ranker, wt, correction) {
     # between the overall wealth variable (using only the observations used in the model)
     # and the health outcome; use the sampling weights used in the model
     # then subtract the sum of all partial contributions
-    CIoverall <- ci(ranker[rows], as.numeric(outcome), wt)
+    CIoverall <- ci(ranker[rows], as.numeric(outcome), wt, type = citype)
     CIresid <- concentration_index(CIoverall) - sumOfContributions
     
     # add the residual CI to the contributions vector and name it
@@ -63,7 +64,8 @@ decomposition <- function(outcome, betas, mm, ranker, wt, correction) {
 	     partial_cis = indices,
 		 confints = confints,
 		 averages = averages, 
-		 contribution = pctcontrib,
+		 rel_contribution = pctcontrib,
+		 ci_contribution = contributions, 
 		 overall_ci = CIoverall,
 		 corrected_coefficients = corrected, 
 		 outcome_corrected = outcome_corrected,
