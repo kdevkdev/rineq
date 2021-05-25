@@ -69,40 +69,39 @@ ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "C
   # sum(weights) = 1, see Lerman & Yitzhaki (1989), par. 2
   if (is.null(weights)) weights <- rep(1, length(ineqvar))
   	
-  # replicate weight n times if its a vector
-	if (length(weights) == 1) weights <- rep(weights, length(ineqvar))
+  # replicate weight n times if its not a vector
+  if (length(weights) == 1) weights <- rep(weights, length(ineqvar))
 
   # pack in dataframe 
   cdf <- data.frame(ineqvar = ineqvar, outcome = outcome, weights = weights)
 	
   # ineqvar can be incomplete, but weights and outcome should be complete for calcs:
   # cdf <- cdf[ !is.na(cdf$weights) & !is.na(cdf$outcome),]
-	cdf <- na.omit(cdf)
+  cdf <- na.omit(cdf)
   n <- nrow(cdf)
 	
 	
-	cdf$weights_norm = cdf$weights / sum(cdf$weights)
-	cdf$rank = rank_wt(cdf$ineqvar, wt = rep(1,n))
-	
-	# calculate weighted average of the health variable
-	mean_outcome <- weighted.mean(cdf$outcome, w = cdf$weights)
+  cdf$weights_norm = cdf$weights / sum(cdf$weights)
+  cdf$rank = rank_wt(cdf$ineqvar, wt = rep(1,n))
 
-	# calculate weighed rank of the wealth variable
-	cdf$weighted_rank <- rank_wt(x = cdf$ineqvar, wt = cdf$weights)
+  # calculate weighted average of the health variable
+  mean_outcome <- weighted.mean(cdf$outcome, w = cdf$weights)
 
-	# correction factor for sample vs population degree of freedoms 
-	if(df_correction) cf <- (n-1)/n else cf = 1
-	
-	# calculate average rank
-	meanw_rank  <- mean(cdf$weighted_rank)
-	
-	# variance of weighted rank
+  # calculate weighed rank of the wealth variable
+  cdf$weighted_rank <- rank_wt(x = cdf$ineqvar, wt = cdf$weights)
+
+  # correction factor for sample vs population degree of freedoms 
+  if(df_correction) cf <- (n-1)/n else cf = 1
+
+  # calculate average rank
+  meanw_rank  <- mean(cdf$weighted_rank)
+
+  # variance of weighted rank
   var_ranku = var_wt(cdf$weighted_rank, w = cdf$weights, na.rm = T)
 	
-###### actual core calulations ###############
-	
+  ###### actual core calulations ###############
   if(method == "linreg_delta")
-	{	
+  {
   	# follow 8.12 in world bank doc to also get  standard error
     cdf$wo = cdf$weights*cdf$outcome
   	mod_lm = lm(outcome ~ weighted_rank, data = cdf, weights = cdf$weights)

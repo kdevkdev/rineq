@@ -30,12 +30,13 @@ decomposition <- function(outcome, betas, mm, ranker, wt, correction, citype = "
     # use only the observations of the ranking variable that are actually used in the model
     # the intermediate cis returns a list with objects of class hci
     # indices stores the values of the concentration index only
-    cis <- apply(mm[,-1], 2, ci, ineqvar = ranker[rows], weights = wt, type = citype)
+
+    cis <- apply(mm[,-1, drop = F], 2, ci, ineqvar = ranker[rows], weights = wt, type = citype)
     indices <- sapply(cis, concentration_index)
     confints <- sapply(cis, confint)
     
     # calculate the weighted average for every variable in the model matrix
-    averages <- apply(mm[,-1], 2, weighted.mean, w = wt)
+    averages <- apply(mm[,-1, drop = F], 2, weighted.mean, w = wt)
     
     # calculate the weighted mean of the outcome
     mu <- weighted.mean(outcome, w = wt)
