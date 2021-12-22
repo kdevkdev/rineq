@@ -78,7 +78,7 @@ contrib <- contribution(fit_glm_p, nigeria$wealth, type = "CIw")
 summary(contrib)
 par(mar = c(4, 8, 1, 1))
 plot(contrib, decreasing = FALSE,horiz = TRUE, las = 1, xlab = "Contribution (\%)")
-if(requireNamespace("mfx", quietly = TRUE)) {
+\dontrun{
 
    ## Marginal effects probit using package 'mfx': Decomposition based on predicted outcome
    library(mfx)

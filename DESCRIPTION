@@ -29,5 +29,5 @@ Imports: stats, rlang, rpart
 Suggests: sandwich, lmtest, mfx, survey
 License: GPL-2 | GPL-3
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Encoding: UTF-8

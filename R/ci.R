@@ -48,9 +48,12 @@
 #' confint(cicars, level = 0.95) 
 #'
 #' # Wagstaff type with binary outcome and robust standard errors that should correspond to Stata's
-#' cicarsb <- ci(cars$speed, cars$dist > 36, type = "CIw", robust_se = TRUE, rse_type = "HC1")
 #' summary(cicars)
 #' 
+#'
+#' \dontrun{
+#'     cicarsb <- ci(cars$speed, cars$dist > 36, type = "CIw", robust_se = TRUE, rse_type = "HC1")
+#' }
 ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "CIw"), method = c("linreg_delta", "linreg_convenience", "cov_convenience", "direct"), df_correction = T, robust_se = F, rse_type = "HC3") {
 
 	

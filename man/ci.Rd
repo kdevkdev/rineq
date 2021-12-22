@@ -67,9 +67,12 @@ ci = cicars$concentration_index
 confint(cicars, level = 0.95) 
 
 # Wagstaff type with binary outcome and robust standard errors that should correspond to Stata's
-cicarsb <- ci(cars$speed, cars$dist > 36, type = "CIw", robust_se = TRUE, rse_type = "HC1")
 summary(cicars)
 
+
+\dontrun{
+    cicarsb <- ci(cars$speed, cars$dist > 36, type = "CIw", robust_se = TRUE, rse_type = "HC1")
+}
 }
 \references{
 Clarke, P. M., Gerdtham, U. G., Johannesson, M., Bingefors, K., & Smith, L. (2002). On the measurement of relative and absolute income-related health inequality. Social Science & Medicine, 55(11), 1923-1928
