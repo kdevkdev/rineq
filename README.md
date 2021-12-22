@@ -1,6 +1,6 @@
 ## rineq
 
-[![Travis-CI Build Status](https://travis-ci.org/brechtdv/rineq.svg?branch=master)](https://travis-ci.org/brechtdv/rineq)
+
 
 _Statistical Analysis of Health Inequalities_
 
