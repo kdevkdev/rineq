@@ -1,8 +1,8 @@
 Package: rineq
 Title: Statistical Analysis of Health Inequalities
 Version: 0.1.0
-Date: 2020-12-04
-Authors@R: c(person("Brecht", "Devleesschauwer", role = c("aut", "cre"),
+Date: 2022-05-29
+Authors@R: c(person("Brecht", "Devleesschauwer", role = c("aut"),
 	                email = "brechtdv@gmail.com"),
              person("Saveria", "Willimès", role = c("aut"),
 	                email = "swillimes@yahoo.com"),
@@ -12,22 +12,30 @@ Authors@R: c(person("Brecht", "Devleesschauwer", role = c("aut", "cre"),
 	                email = "peter.konings@ki.se"),
              person("Niko", "Speybroeck", role = c("aut"),
 	                email = "niko.speybroeck@uclouvain.be"),
-			 person("Kaspar", "Meili", role = c("aut"),
+			 person("Kaspar", "Meili", role = c("aut", "cre"),
 	                email = "meilikaspar@yahoo.de"))
-Author: Brecht Devleesschauwer [aut, cre],
+Author: Brecht Devleesschauwer [aut],
   Saveria Willimès [aut],
   Carine Van Malderen [aut],
   Peter Konings [aut],
-  Niko Speybroeck [aut]
-Maintainer: Brecht Devleesschauwer <brechtdv@gmail.com>
+  Niko Speybroeck [aut],
+  Kaspar Meili [aut, cre]
+Maintainer: Kaspar Meili <meilikaspar@yahoo.de>
 Description: Functions to calculate the relative, generalized, and Erreygers
     corrected concentration index; plot Lorenz curves; and decompose health
     inequalities using (generalized) linear models, survival models, and
-    regression and binary trees.
+    regression and binary trees. 
+    Forked by Brecht Devleesschauwer from the decomp package originally (no longer on CRAN).  
 Depends: R (>= 3.4.0)
 Imports: stats, rlang, rpart
-Suggests: sandwich, lmtest, mfx, survey
+Suggests: 
+    sandwich,
+    lmtest,
+    mfx,
+    survey,
+    testthat (>= 3.0.0)
 License: GPL-2 | GPL-3
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Encoding: UTF-8
+Config/testthat/edition: 3

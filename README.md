@@ -1,6 +1,5 @@
 ## rineq
 
-[![Travis-CI Build Status](https://travis-ci.org/brechtdv/rineq.svg?branch=master)](https://travis-ci.org/brechtdv/rineq)
 
 _Statistical Analysis of Health Inequalities_
 
@@ -25,5 +24,5 @@ Decomposition
 
 To download and install the latest development version from GitHub:
 ```r
-devtools::install_github("brechtdv/rineq")
+devtools::install_github("kdevkdev/rineq")
 ```

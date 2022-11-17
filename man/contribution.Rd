@@ -22,8 +22,6 @@ An object of class \code{decomposition} containing the following components
   \item{partial_cis}{a numeric vector containing partial RCIs}
   \item{confints}{a numeric vector contaning 95\% confience intervals for the partial concentration indices}
 }
-
-
 }
 \description{
 Function to decompose the Relative Concentration Index into its components

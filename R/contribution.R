@@ -7,18 +7,24 @@
 #' @usage contribution(object, ranker, correction = TRUE, type = "CI")
 #'
 #' 
-#' @return An object of class \code{decomposition} containing the following components
+#' @return An object of class \code{decomposition} containing the following components:
 #' \itemize{
 #'   \item{betas}{a numeric vector containing regression coefficients}
 #'   \item{partial_cis}{a numeric vector containing partial RCIs}
 #'   \item{confints}{a numeric vector contaning 95\% confience intervals for the partial concentration indices}
+#'   \item{averages}{}
+#'   \item{ci_contribution}{}
+#'   \item{overall_ci}{}
+#'   \item{corrected_coefficients}{}
+#'   \item{outcome_corrected}{}
+#'   \item{rows}{}
 #' }
 #' 
 #' @param object The model result object. class \code{coxph}, \code{glm}, \code{lm} or \code{svyglm}, \code{probitmfx}, \code{logitmfx}; the outcome should be the health variable and the predictors the components. For \code{summary()}: an object of class \code{decomposition}.
 #' @param ranker Ranking variable with the same length as the outcome. 
 #' @param correction A logical indicating whether the global and partial RCIs should be corrected for negative values using imputation.
 #' @param type Concentration index type that the decomposition should be applied to. Defaults to \code{CI}. Use \code{CIw} for binary outcomes. 
-#' @return
+#'
 #'
 #' @references Konings, P., Harper, S., Lynch, J., Hosseinpoor, A.R., Berkvens, D., Lorant, V., Geckova, A., Speybroeck, N., 2010. Analysis of socioeconomic health inequalities using the concentration index. Int J Public Health 55, 71–74. https://doi.org/10.1007/s00038-009-0078-y
 #' @references Speybroeck, N., Konings, P., Lynch, J., Harper, S., Berkvens, D., Lorant, V., Geckova, A., Hosseinpoor, A.R., 2010. Decomposing socioeconomic health inequalities. Int J Public Health 55, 347–351. https://doi.org/10.1007/s00038-009-0105-z
