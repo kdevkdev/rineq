@@ -16,8 +16,6 @@ Concentration index
 Decomposition
 <table>
 <tr><td><code>contribution</code></td><td>Decompose the Relative Concentration Index into its components</td></tr>
-<tr><td><code>rpart_ci</code></td><td>Recursive partitioning and regression trees using the concentration index</td></tr>
-<tr><td><code>imp</code></td><td>Evaluate variable importance in <code>rpart_ci()</code> trees</td></tr>
 </table>
 
 #### Install
