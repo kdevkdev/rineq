@@ -15,8 +15,8 @@ function(x, ...) {
     #plot(c(1,1), xlim = c(0,1), ylim = c(0,1), type = "n", xlab = "Cumulative share inequality variable", ylab = "Cumulative share of outcome" , 
     #    main = "Concentration Curve", ...)
     #polygon(xCoord, cumdist, col = "light gray", ...)
-    plot(c(0,1), c(0,1), type = "l", col = "black", ..., xlab = "Cumulative share inequality variable", ylab = "Cumulative share outcome")
-    lines(xval, yval, col = "gray", lty = "dashed")   
+    plot(c(0,100), c(0,100), type = "l", col = "black", ..., xlab = "Cumulative % inequality variable", ylab = "Cumulative % outcome")
+    lines(xval*100, yval*100, col = "gray", lty = "dashed")   
   
   }
 
