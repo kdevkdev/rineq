@@ -219,6 +219,7 @@ ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "C
 		 variance = varC, 
 		 fractional_rank = cdf$weighted_rank,
 		 outcome = cdf$outcome,
+		 ineqvar = cdf$ineqvar,
 		 'call' = match.call(),
 		 n = n, 
 		 robust_se = robust_se, 
