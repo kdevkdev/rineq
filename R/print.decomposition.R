@@ -1,7 +1,7 @@
 #' @export
 print.decomposition <-
 function(x, ...) {
-  if (class(x) != "decomposition") stop("Object is not of class decomposition")
+  if (!inherits(x,"decomposition")) stop("Object is not of class decomposition")
   cat("Overall CI:", concentration_index(x$overall_ci), "\n")
   if (x$outcome_corrected) cat("(based on a corrected value)\n")
   cat("\n")

@@ -1,6 +1,6 @@
 as.double.hci <-
   function(x, ...) {
-    if (!any(class(x) == 'hci')) stop("Object is not of class hci")
+    if (!inherits(x,'hci')) stop("Object is not of class hci")
 
     x$concentration_index
   }

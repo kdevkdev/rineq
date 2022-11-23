@@ -4,7 +4,7 @@ contribution.svyglm <-
 function(object, ranker, correction = TRUE, type = "CI") {
     # The ranking variable (wealth, income,...) should be given explicitely.
     # Throw an error if this is not a numeric one
-    if (class(ranker) != "numeric") stop("Not a numeric ranking variable")
+    if(!inherits(ranker,"numeric")) stop("Not a numeric ranking variable")
     
     # extract the outcome of the svyglm object
     outcome <- predict(object, newdata = object$model[,-1], vcov = FALSE)

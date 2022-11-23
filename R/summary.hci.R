@@ -1,6 +1,6 @@
 #' @export
 summary.hci <- function(object, ...) {
-    if (!any(class(object) == 'hci')) stop("Object is not of class hci")
+    if (!inherits(object,'hci')) stop("Object is not of class hci")
     cat("Call:\n")
     print(object$call)
     cat("\nType of Concentration Index:\n", object$type,"\n")

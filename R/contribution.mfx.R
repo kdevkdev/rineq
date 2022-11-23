@@ -4,7 +4,7 @@ contribution.probitmfx <-
   function(object, ranker, correction = TRUE, type = "CI") {
     # The ranking variable (wealth, income,...) should be given explicitely.
     # Throw an error if this is not a numeric one
-    if (class(ranker) != "numeric") stop("Not a numeric ranking variable")
+    if (!inherits(ranker, "numeric")) stop("Not a numeric ranking variable")
     
     
     # extract youtcome

@@ -46,7 +46,7 @@
 #' contrib <- contribution(fit_lm, nigeria$wealth) 
 #' summary(contrib)
 #' par(mar = c(4, 8, 1, 1))
-#' plot(contrib, decreasing = FALSE, horiz = TRUE, las = 1, xlab = "Contribution (%)")
+#' plot(contrib, decreasing = FALSE, horiz = TRUE")
 #'     
 #'     
 #' ## GLM: Decomposition based on predicted outcome
@@ -55,8 +55,7 @@
 #' 
 #' contrib <- contribution(fit_glm, nigeria$wealth) 
 #' summary(contrib)
-#' par(mar = c(4, 8, 1, 1))
-#' plot(contrib, decreasing = FALSE,horiz = TRUE, las = 1, xlab = "Contribution (%)")
+#' plot(contrib, decreasing = FALSE,horiz = TRUE)
 #' 
 #' 
 #' ## Add binary variable
@@ -67,7 +66,6 @@
 #'        data = nigeria,  family = binomial(link = probit))
 #' contrib <- contribution(fit_glm_p, nigeria$wealth, type = "CIw") 
 #' summary(contrib)
-#' par(mar = c(4, 8, 1, 1))
 #' plot(contrib, decreasing = FALSE,horiz = TRUE, las = 1, xlab = "Contribution (%)")
 #' \dontrun{
 #' 

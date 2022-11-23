@@ -1,6 +1,6 @@
 Package: rineq
 Title: Statistical Analysis of Health Inequalities
-Version: 0.1.0
+Version: 0.2.0
 Date: 2022-05-29
 Authors@R: c(person("Brecht", "Devleesschauwer", role = c("aut"),
 	                email = "brechtdv@gmail.com"),
@@ -27,7 +27,7 @@ Description: Functions to calculate the relative, generalized, and Erreygers
     regression and binary trees. 
     Forked by Brecht Devleesschauwer from the decomp package originally (no longer on CRAN).  
 Depends: R (>= 3.4.0)
-Imports: stats, rlang, rpart
+Imports: stats, rlang, rpart, graphics
 Suggests: 
     sandwich,
     lmtest,

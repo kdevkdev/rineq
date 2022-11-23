@@ -1,7 +1,7 @@
 #' @export
 print.hci <-
 function(x, ...) {
-  if (class(x) != "hci") stop("Object is not of class hci")
+  if (!inherits(x,"hci")) stop("Object is not of class hci")
   print(x$concentration_index)
 }
 
