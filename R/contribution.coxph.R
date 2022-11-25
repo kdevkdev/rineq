@@ -1,4 +1,5 @@
 #' @method contribution coxph
+#' @importFrom stats model.matrix weights coefficients
 #' @export
 contribution.coxph <-
 function(object, ranker, correction = TRUE, type = "CI") {

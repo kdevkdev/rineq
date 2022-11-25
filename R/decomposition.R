@@ -8,6 +8,7 @@
 #' @param citype CI type to be calculated, defaults to \code{CI}. Use \code{CIw} for binary outcomes. 
 #'
 #' @return S3 object of class decomposition
+#' @importFrom stats confint
 #' @export
 decomposition <- function(outcome, betas, mm, ranker, wt, correction, citype = "CI") {    
     # define an index vector for the rows that are actually used in the model, rownames are strings
@@ -42,7 +43,8 @@ decomposition <- function(outcome, betas, mm, ranker, wt, correction, citype = "
     mu <- weighted.mean(outcome, w = wt)
     
     # calculate the sum off all partial contributions
-    contributions <- betas * averages / mu * indices
+    elasticities <- betas * averages / mu
+    contributions <- elasticities * indices
     sumOfContributions <- sum(contributions)
     
     # calculate the residual CI: first, calculate the overal CI
@@ -67,6 +69,7 @@ decomposition <- function(outcome, betas, mm, ranker, wt, correction, citype = "
 		 averages = averages, 
 		 rel_contribution = pctcontrib,
 		 ci_contribution = contributions, 
+		 elasticities = elasticities,
 		 overall_ci = CIoverall,
 		 corrected_coefficients = corrected, 
 		 outcome_corrected = outcome_corrected,

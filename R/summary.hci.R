@@ -1,3 +1,4 @@
+#' @importFrom stats confint
 #' @export
 summary.hci <- function(object, ...) {
     if (!inherits(object,'hci')) stop("Object is not of class hci")

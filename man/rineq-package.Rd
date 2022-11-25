@@ -31,8 +31,6 @@ Available functions in the \pkg{rineq} package:
 
     \strong{Decomposition}\cr
     \code{\link{contribution}}    \tab Decompose the Relative Concentration Index into its components.\cr
-    \code{\link{rpart_ci}}        \tab Recursive partitioning and regression trees using the concentration index.\cr
-    \code{\link{imp}}             \tab Evaluate variable importance in rpart_ci() trees.\cr\cr
   }
 }
 

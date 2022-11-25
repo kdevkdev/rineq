@@ -1,6 +1,11 @@
+#' Summary for decomposition 
+#' @param object Result of a decomposition
+#' @param digits Number of digits, defaults to R `digits` option
+#' @param addcoefs Wether or not to add coefficients (defaulst to `FALSE`)
+#' @importFrom stats confint
 #' @export
 summary.decomposition <-
-function(object, digits = getOption('digits'), ...) {
+function(object, digits = getOption('digits'), addcoefs = FALSE) {
 
   ds <- digits
     
@@ -13,8 +18,12 @@ function(object, digits = getOption('digits'), ...) {
   cat("Decomposition:\n")
   result <- data.frame(round(object$rel_contribution,ds))
   names(result) <- "Contribution (%)"
-  result$`Contribution (Abs)` = round(object$ci_contribution,ds)
-  result$Elasticity <- round(object$ci_contribution/c(0,object$partial_cis),ds)
+  
+  if(addcoefs)
+    results$Coefficient <- c(NA, object$betas)
+  
+  result$`Contribution (Abs)` <- round(object$ci_contribution,ds)
+  result$Elasticity <- round(c(0,object$elasticities),ds)
   result$"Concentration Index" <- c(NA, round(object$partial_cis,ds))
   result$"lower 5%" <- c(NA, round(object$confints[1,],ds))
   result$"upper 5%" <- c(NA, round(object$confints[2,],ds))

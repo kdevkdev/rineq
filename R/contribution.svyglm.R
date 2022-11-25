@@ -1,5 +1,6 @@
 #' @method contribution svyglm
 #' @export
+#' @importFrom stats model.matrix coefficients
 contribution.svyglm <-
 function(object, ranker, correction = TRUE, type = "CI") {
     # The ranking variable (wealth, income,...) should be given explicitely.

@@ -34,7 +34,7 @@
 #' @references Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalities in health: measurement, computation, and statistical inference.Journal of econometrics, 77(1), 87-103.
 #' @references O'Donnel, O., O'Neill S., Van Ourti T., & Walsh B. (2016). Conindex: Estimation of Concentration Indices. The Stata Journal 16(1): 112-138.
 #' @references O’Donnell, O., Van Doorslaer, E. , Wagstaff, A., Lindelow, M., 2008. Analyzing Health Equity Using Household Survey Data: A Guide to Techniques and Their Implementation, World Bank Publications. The World Bank.
-#' 
+#' @importFrom stats na.omit weighted.mean lm coef cov.wt
 #' @export
 #' @examples
 #' # Direct
@@ -55,7 +55,10 @@
 #'     cicarsb <- ci(cars$speed, cars$dist > 36, type = "CIw", robust_se = TRUE, rse_type = "HC1")
 #' }
 ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "CIw"), method = c("linreg_delta", "linreg_convenience", "cov_convenience", "direct"), df_correction = T, robust_se = F, rse_type = "HC3") {
-
+  argname_outcome <-deparse(substitute(outcome))
+  argname_ineqvar <-deparse(substitute(ineqvar))
+  
+  
 	
 
   if (robust_se && (!requireNamespace("sandwich", quietly = T))) {
@@ -210,7 +213,6 @@ ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "C
     varC = varC * (1/(1-mean_outcome))^2 # treat as constant
   }
 
-
 	# return an object of class hci
 	ci <-
 	list(concentration_index = concentration_index,
@@ -220,7 +222,9 @@ ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "C
 		 fractional_rank = cdf$weighted_rank,
 		 outcome = cdf$outcome,
 		 ineqvar = cdf$ineqvar,
-		 'call' = match.call(),
+		 call =  deparse(match.call()),
+		 argname_outcome = argname_ineqvar,
+		 argname_ineqvar = argname_outcome,
 		 n = n, 
 		 robust_se = robust_se, 
 		 rse_type = rse_type,

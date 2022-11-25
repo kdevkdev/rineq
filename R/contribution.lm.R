@@ -1,4 +1,5 @@
 #' @method contribution lm
+#' @importFrom stats weights model.matrix coefficients
 #' @export
 contribution.lm <-
 function(object, ranker, correction = TRUE, type = "CI") {

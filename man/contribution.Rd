@@ -48,6 +48,52 @@ Use the \code{decomposition} function directly to manually specify coefficients,
 \code{ranker} should be chosen with care. Ideally, it is a variable from the same dataframe as the other variables. If not, redefine the row names in the model.
 }
 
+\examples{
+data(nigeria)
+
+## Linear regression direct decomposition
+fit_lm <- lm(zscore1 ~ quintile + ed + rural + region + male + bord + agechild + agemother,
+       data = nigeria, weights = nigeria$weight)
+
+## decompose relative concentration index
+contrib <- contribution(fit_lm, nigeria$wealth) 
+summary(contrib)
+par(mar = c(4, 8, 1, 1))
+plot(contrib, decreasing = FALSE, horiz = TRUE)
+    
+    
+## GLM: Decomposition based on predicted outcome
+fit_glm <-glm(zscore1 ~ quintile + ed + rural + region + male + bord + agechild + agemother,
+       data = nigeria, weights = nigeria$weight)
+
+contrib <- contribution(fit_glm, nigeria$wealth) 
+summary(contrib)
+plot(contrib, decreasing = FALSE,horiz = TRUE)
+
+
+## Add binary variable
+nigeria$z_bin <- as.numeric(nigeria$zscore > 0)
+
+## GLM probit: Decomposition based on predicted outcome
+fit_glm_p <-glm(z_bin ~ quintile + ed + rural + region + male + bord + agechild + agemother,
+       data = nigeria,  family = binomial(link = probit))
+contrib <- contribution(fit_glm_p, nigeria$wealth, type = "CIw") 
+summary(contrib)
+plot(contrib, decreasing = FALSE,horiz = TRUE, las = 1)
+\dontrun{
+
+   ## Marginal effects probit using package 'mfx': Decomposition based on predicted outcome
+   library(mfx)
+   fit_mfx <-probitmfx(z_bin ~ quintile + ed + rural + region + male + bord + agechild + agemother,
+       data = nigeria)
+   contrib <- contribution(fit_mfx, nigeria$wealth, type = "CIw") 
+   summary(contrib, type="CIw")
+   par(mar = c(4, 8, 1, 1))
+   plot(contrib, decreasing = FALSE, horiz = TRUE, las = 1)
+
+}
+
+}
 \references{
 Konings, P., Harper, S., Lynch, J., Hosseinpoor, A.R., Berkvens, D., Lorant, V., Geckova, A., Speybroeck, N., 2010. Analysis of socioeconomic health inequalities using the concentration index. Int J Public Health 55, 71–74. https://doi.org/10.1007/s00038-009-0078-y
 

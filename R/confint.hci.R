@@ -1,4 +1,5 @@
 #' @export
+#' @importFrom stats qnorm
 confint.hci <-
 function(object, parm = NULL, level = 0.95, ...) {
   if (!inherits(object, 'hci')) stop("Object is not of class hci")

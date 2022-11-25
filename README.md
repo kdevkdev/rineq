@@ -3,7 +3,7 @@
 
 _Statistical Analysis of Health Inequalities_
 
-The `rineq` package provides functions to  calculate the relative, generalized, and Erreygers corrected concentration index; plot Lorenz curves; and decompose health inequalities using (generalized) linear models, survival models, and regression and binary trees.
+The `rineq` package provides functions to  calculate the relative, generalized, and Erreygers corrected concentration index; plot Lorenz curves; and decompose health inequalities using (generalized) linear models, and survival models.
 
 #### Available functions
 

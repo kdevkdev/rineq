@@ -1,4 +1,5 @@
 #' @method contribution glm
+#' @importFrom stats predict model.matrix coefficients
 #' @export
 contribution.glm <-
 function(object, ranker, correction = TRUE, type = "CI") {
