@@ -15,9 +15,9 @@ function(x, ...) {
     xval <- c(0,xval +  (1-xval[length(xval)]))
     
     
-    plot(c(0,100), c(0,100), type = "l", main = x$call,  col = "black", ... , 
-         xlab = paste0("Cumulative % ranked ", x$argname_ineqvar), 
-         ylab = paste0("Cumulative % ", x$argname_outcome))
+    plot(c(0,100), c(0,100), type = "l", main = "Concentration curve",  col = "black", ... , 
+         xlab = paste0("Cumulative % ranked inequality"), 
+         ylab = paste0("Cumulative % outcome"))
     lines(xval*100, yval*100, col = "darkred", lty = "dashed")   
   
   }
