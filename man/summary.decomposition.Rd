@@ -4,7 +4,7 @@
 \alias{summary.decomposition}
 \title{Summary for decomposition}
 \usage{
-\method{summary}{decomposition}(object, digits = getOption("digits"), addcoefs = FALSE)
+\method{summary}{decomposition}(object, digits = getOption("digits"), addcoefs = FALSE, ...)
 }
 \arguments{
 \item{object}{Result of a decomposition}
@@ -12,6 +12,8 @@
 \item{digits}{Number of digits, defaults to R `digits` option}
 
 \item{addcoefs}{Wether or not to add coefficients (defaulst to `FALSE`)}
+
+\item{...}{Additional parameters, currently unused}
 }
 \description{
 Summary for decomposition

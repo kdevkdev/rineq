@@ -36,47 +36,44 @@
 #' \code{ranker} should be chosen with care. Ideally, it is a variable from the same dataframe as the other variables. If not, redefine the row names in the model. 
 #' 
 #' @examples
-#' data(nigeria)
+#' data(housing)
 #'
 #' ## Linear regression direct decomposition
-#' fit_lm <- lm(zscore1 ~ quintile + ed + rural + region + male + bord + agechild + agemother,
-#'        data = nigeria, weights = nigeria$weight)
+#' fit.lm <- lm(bmi ~ sex + tenure + place + age,data = housing)
+#'        
 #'
 #' ## decompose relative concentration index
-#' contrib <- contribution(fit_lm, nigeria$wealth) 
-#' summary(contrib)
-#' par(mar = c(4, 8, 1, 1))
-#' plot(contrib, decreasing = FALSE, horiz = TRUE)
+#' contrib.lm <- contribution(fit.lm, housing$income) 
+#' summary(contrib.lm)
+#' plot(contrib.lm, decreasing = FALSE, horiz = TRUE)
 #'     
 #'     
 #' ## GLM: Decomposition based on predicted outcome
-#' fit_glm <-glm(zscore1 ~ quintile + ed + rural + region + male + bord + agechild + agemother,
-#'        data = nigeria, weights = nigeria$weight)
+#' fit.logit <-glm(high.bmi ~ sex + tenure + place + age, data = housing)
 #' 
-#' contrib <- contribution(fit_glm, nigeria$wealth) 
-#' summary(contrib)
-#' plot(contrib, decreasing = FALSE,horiz = TRUE)
+#' contrib.logit <- contribution(fit.logit, housing$income) 
+#' summary(contrib.logit)
+#' plot(contrib.logit, decreasing = FALSE,horiz = TRUE)
 #' 
-#' 
-#' ## Add binary variable
-#' nigeria$z_bin <- as.numeric(nigeria$zscore > 0)
 #' 
 #' ## GLM probit: Decomposition based on predicted outcome
-#' fit_glm_p <-glm(z_bin ~ quintile + ed + rural + region + male + bord + agechild + agemother,
-#'        data = nigeria,  family = binomial(link = probit))
-#' contrib <- contribution(fit_glm_p, nigeria$wealth, type = "CIw") 
-#' summary(contrib)
-#' plot(contrib, decreasing = FALSE,horiz = TRUE, las = 1)
+#' fit.probit <-glm(high.bmi ~ sex + tenure + place + age, data = housing, 
+#'                 family = binomial(link = probit))
+#' 
+#' # binary, set type to 'CIw'
+#' contrib.probit <- contribution(fit.probit, housing$income, type = "CIw") 
+#' summary(contrib.probit)
+#' plot(contrib.probit, decreasing = FALSE,horiz = TRUE)
+#' 
 #' \dontrun{
 #' 
 #'    ## Marginal effects probit using package 'mfx': Decomposition based on predicted outcome
 #'    library(mfx)
-#'    fit_mfx <-probitmfx(z_bin ~ quintile + ed + rural + region + male + bord + agechild + agemother,
-#'        data = nigeria)
-#'    contrib <- contribution(fit_mfx, nigeria$wealth, type = "CIw") 
-#'    summary(contrib, type="CIw")
-#'    par(mar = c(4, 8, 1, 1))
-#'    plot(contrib, decreasing = FALSE, horiz = TRUE, las = 1)
+#'    fit.mfx <-probitmfx(high.bmi ~ sex + tenure + place + age, data = housing)
+#'    
+#'    contrib.mfx <- contribution(fit.mfx, housing$income, type = "CIw") 
+#'    summary(contrib.mfx, type="CIw")
+#'    plot(contrib.mfx, decreasing = FALSE, horiz = TRUE)
 #' 
 #' }
 #' 

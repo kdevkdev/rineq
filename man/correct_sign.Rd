@@ -23,15 +23,18 @@ These components can be extracted with the functions \code{correctedValue} and \
 The Relative Concentration Index is not bonded between [-1,1] if the health variable contains both negative and positive values. This function corrects for this either by imputing a value of 0 for all negative values or by subtracting the minimum value.
 }
 \examples{
-data(nigeria)
+data(housing)
 
-nigeria$zscore.shifted <- corrected_value(correct_sign(nigeria$zscore, shift = TRUE))
-nigeria$zscore.imputed <- corrected_value(correct_sign(nigeria$zscore, shift = FALSE))
+# standardize & normalize bmi, will introduce negative values
+housing$zbmi <- (housing$bmi - mean(housing$bmi))/ sd(housing$bmi)
+
+housing$zbmi.shifted <- corrected_value(correct_sign(housing$zbmi, shift = TRUE))
+housing$zbmi.imputed <- corrected_value(correct_sign(housing$zbmi, shift = FALSE))
 
 ## compare the effect of both methods
-plot(density(nigeria$zscore, na.rm = TRUE))
-points(density(nigeria$zscore.shifted, na.rm = TRUE), col = 'blue')
-points(density(nigeria$zscore.imputed, na.rm = TRUE), col = 'green')
+plot(density(housing$zbmi, na.rm = TRUE))
+points(density(housing$zbmi.shifted, na.rm = TRUE), col = 'blue')
+points(density(housing$zbmi.imputed, na.rm = TRUE), col = 'green')
 
 }
 \author{

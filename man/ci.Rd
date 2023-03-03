@@ -57,21 +57,23 @@ This function calculates the relative concentration index (Kakwani et al), the g
 }
 \examples{
 # Direct
-cicars <- ci(cars$speed, cars$dist, method = "direct")
-summary(cicars)
+data(housing)
+ci.bmi <- ci(ineqvar = housing$income, outcome = housing$bmi, method = "direct")
+summary(ci.bmi)
 
 # retrieve value
-ci = cicars$concentration_index
+ci.bmi$concentration_index
 
 # obtain confidence intervals
-confint(cicars, level = 0.95) 
+confint(ci.bmi, level = 0.95) 
+
+plot(ci.bmi)
 
 # Wagstaff type with binary outcome and robust standard errors that should correspond to Stata's
-summary(cicars)
-
 
 \dontrun{
-    cicarsb <- ci(cars$speed, cars$dist > 36, type = "CIw", robust_se = TRUE, rse_type = "HC1")
+  ci.bmi.b <- ci(housing$income, hsousing$high.bmi, type = "CIw", robust_se = TRUE, 
+                 rse_type = "HC1")
 }
 }
 \references{

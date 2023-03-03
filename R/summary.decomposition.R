@@ -2,10 +2,11 @@
 #' @param object Result of a decomposition
 #' @param digits Number of digits, defaults to R `digits` option
 #' @param addcoefs Wether or not to add coefficients (defaulst to `FALSE`)
+#' @param ... Additional parameters, currently unused
 #' @importFrom stats confint
 #' @export
 summary.decomposition <-
-function(object, digits = getOption('digits'), addcoefs = FALSE) {
+function(object, digits = getOption('digits'), addcoefs = FALSE, ...) {
 
   ds <- digits
     

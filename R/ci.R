@@ -38,21 +38,23 @@
 #' @export
 #' @examples
 #' # Direct
-#' cicars <- ci(cars$speed, cars$dist, method = "direct")
-#' summary(cicars)
+#' data(housing)
+#' ci.bmi <- ci(ineqvar = housing$income, outcome = housing$bmi, method = "direct")
+#' summary(ci.bmi)
 #' 
 #' # retrieve value
-#' ci = cicars$concentration_index
+#' ci.bmi$concentration_index
 #' 
 #' # obtain confidence intervals
-#' confint(cicars, level = 0.95) 
+#' confint(ci.bmi, level = 0.95) 
 #'
-#' # Wagstaff type with binary outcome and robust standard errors that should correspond to Stata's
-#' summary(cicars)
+#' plot(ci.bmi)
 #' 
-#'
+#' # Wagstaff type with binary outcome and robust standard errors that should correspond to Stata's
+#' 
 #' \dontrun{
-#'     cicarsb <- ci(cars$speed, cars$dist > 36, type = "CIw", robust_se = TRUE, rse_type = "HC1")
+#'   ci.bmi.b <- ci(housing$income, hsousing$high.bmi, type = "CIw", robust_se = TRUE, 
+#'                  rse_type = "HC1")
 #' }
 ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "CIw"), method = c("linreg_delta", "linreg_convenience", "cov_convenience", "direct"), df_correction = T, robust_se = F, rse_type = "HC3") {
   argname_outcome <-deparse(substitute(outcome))
