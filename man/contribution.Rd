@@ -11,7 +11,7 @@ contribution(object, ranker, correction = TRUE, type = "CI")
 
 \item{ranker}{Ranking variable with the same length as the outcome.}
 
-\item{correction}{A logical indicating whether the global and partial RCIs should be corrected for negative values using imputation.}
+\item{correction}{A logical indicating whether the global and partial confidence should be corrected for negative values using imputation.}
 
 \item{type}{Concentration index type that the decomposition should be applied to. Defaults to \code{CI}. Use \code{CIw} for binary outcomes.}
 }
@@ -19,7 +19,7 @@ contribution(object, ranker, correction = TRUE, type = "CI")
 An object of class \code{decomposition} containing the following components:
 \itemize{
   \item{\code{betas}}{ A numeric vector containing regression coefficients}
-  \item{\code{partial_cis}}{ A numeric vector containing partial RCIs}
+  \item{\code{partial_cis}}{ A numeric vector containing partial confidence intervals}
   \item{\code{confints}}{ A numeric vector containing 95\% confidence intervals for the partial concentration indices}
   \item{\code{averages}}{ Weighted averages of every variable in the model}
   \item{\code{ci_contribution}}{ Confidence intervals for contributions}

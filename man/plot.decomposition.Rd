@@ -13,7 +13,7 @@
 
 \item{horiz}{If the barplots should be printed horizontally or vertically}
 
-\item{...}{Graphical parameter passed on to barplot}
+\item{...}{Graphical parameter passed on to `barplot`}
 }
 \description{
 Plots a barplot of the contribution percentages. Sets custom plot margins and uses the graphical parameters `xlim`, `horiz`, `las` and `xlab` which therefore cannot be customized

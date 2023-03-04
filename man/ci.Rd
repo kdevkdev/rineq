@@ -69,7 +69,8 @@ confint(ci.bmi, level = 0.95)
 
 plot(ci.bmi)
 
-# Wagstaff type with binary outcome and robust standard errors that should correspond to Stata's (depends on 'sandwich')
+# Wagstaff type with binary outcome and robust standard errors 
+# that should correspond to Stata (depends on 'sandwich'):
 
 
 ci.bmi.b <- ci(housing$income, housing$high.bmi, type = "CIw", robust_se = TRUE, 

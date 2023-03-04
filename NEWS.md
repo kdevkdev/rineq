@@ -1,5 +1,3 @@
-# devtools (development version)
-
 # rineq 0.2.2
 
 * Get ready for release on CRAN. Improve spelling, documentation
@@ -16,4 +14,4 @@
 * Add support for robust standard errors, requires the `sandwich` package
 * Add support for different methods of calculating the concentration index and briefly outline their pros and cons. See `method` argument of `ci()`
 * Add support for marginal effects probit (`mfx` package).
-* Convert documentation to roxygen2.
+* Convert documentation to the `roxygen2` format.

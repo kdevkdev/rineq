@@ -6,7 +6,7 @@
 #' @param decreasing Whether to sort contributions decreasing or not
 #' @param x Object returned from decomposition function
 #' @param horiz If the barplots should be printed horizontally or vertically
-#' @param ...  Graphical parameter passed on to barplot
+#' @param ...  Graphical parameter passed on to `barplot`
 #' @export
 plot.decomposition <-
   function(x, decreasing = TRUE, horiz = F, ...) {
