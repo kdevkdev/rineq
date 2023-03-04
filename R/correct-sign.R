@@ -19,18 +19,18 @@
 #' @export
 #'
 #' @examples
-#' data(housing)
+#' data("housing")
 #'
 #' # standardize & normalize bmi, will introduce negative values
-#' housing$zbmi <- (housing$bmi - mean(housing$bmi))/ sd(housing$bmi)
+#' housing$bmi.std <- (housing$bmi - mean(housing$bmi))/ sd(housing$bmi)
 #'
-#' housing$zbmi.shifted <- corrected_value(correct_sign(housing$zbmi, shift = TRUE))
-#' housing$zbmi.imputed <- corrected_value(correct_sign(housing$zbmi, shift = FALSE))
+#' housing$bmi.std.shifted <- corrected_value(correct_sign(housing$bmi.std, shift = TRUE))
+#' housing$bmi.std.imputed <- corrected_value(correct_sign(housing$bmi.std, shift = FALSE))
 #' 
 #' ## compare the effect of both methods
-#' plot(density(housing$zbmi, na.rm = TRUE))
-#' points(density(housing$zbmi.shifted, na.rm = TRUE), col = 'blue')
-#' points(density(housing$zbmi.imputed, na.rm = TRUE), col = 'green')
+#' plot(density(housing$bmi.std, na.rm = TRUE))
+#' points(density(housing$bmi.std.shifted, na.rm = TRUE), col = 'blue')
+#' points(density(housing$bmi.std.imputed, na.rm = TRUE), col = 'green')
 #' 
 correct_sign <-
 function(x, shift = TRUE) {

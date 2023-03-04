@@ -53,7 +53,7 @@ An  S3 object of class \code{hci}. Contains:
 }
 }
 \description{
-This function calculates the relative concentration index (Kakwani et al), the generalized concentration index (Clarke et al, 2002), the Wagstaff index for bounded variables (Owen et al. 2016), and the concentration index with Erreygers' correction (Erreygers et al, 2009).  It returns an object of class hci for which confidence intervals, summaries and plots are defined.
+This function calculates the relative concentration index (Kakwani et al.), the generalized concentration index (Clarke et al., 2002), the Wagstaff index for bounded variables (Owen et al. 2016), and the concentration index with Erreygers' correction (Erreygers et al., 2009).  It returns an object of class \code{hci} for which confidence intervals, summaries and plots are defined.
 }
 \examples{
 # Direct
@@ -69,19 +69,19 @@ confint(ci.bmi, level = 0.95)
 
 plot(ci.bmi)
 
-# Wagstaff type with binary outcome and robust standard errors that should correspond to Stata's
+# Wagstaff type with binary outcome and robust standard errors that should correspond to Stata's (depends on 'sandwich')
 
-\dontrun{
-  ci.bmi.b <- ci(housing$income, hsousing$high.bmi, type = "CIw", robust_se = TRUE, 
-                 rse_type = "HC1")
-}
+
+ci.bmi.b <- ci(housing$income, housing$high.bmi, type = "CIw", robust_se = TRUE, 
+   rse_type = "HC1")
+
 }
 \references{
 Clarke, P. M., Gerdtham, U. G., Johannesson, M., Bingefors, K., & Smith, L. (2002). On the measurement of relative and absolute income-related health inequality. Social Science & Medicine, 55(11), 1923-1928
 
 Erreygers, G. (2009). Correcting the concentration index. Journal of health economics, 28(2), 504-515
 
-Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalities in health: measurement, computation, and statistical inference.Journal of econometrics, 77(1), 87-103.
+Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalities in health: measurement, computation, and statistical inference. Journal of econometrics, 77(1), 87-103.
 
 O'Donnel, O., O'Neill S., Van Ourti T., & Walsh B. (2016). Conindex: Estimation of Concentration Indices. The Stata Journal 16(1): 112-138.
 

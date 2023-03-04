@@ -1,6 +1,6 @@
 #' Calculates different type of concentration indexes
 #'
-#' This function calculates the relative concentration index (Kakwani et al), the generalized concentration index (Clarke et al, 2002), the Wagstaff index for bounded variables (Owen et al. 2016), and the concentration index with Erreygers' correction (Erreygers et al, 2009).  It returns an object of class hci for which confidence intervals, summaries and plots are defined.
+#' This function calculates the relative concentration index (Kakwani et al.), the generalized concentration index (Clarke et al., 2002), the Wagstaff index for bounded variables (Owen et al. 2016), and the concentration index with Erreygers' correction (Erreygers et al., 2009).  It returns an object of class \code{hci} for which confidence intervals, summaries and plots are defined.
 #'
 #' @param ineqvar Used for ranking, usually relates to the socioeconomic position, for example income. 
 #' @param outcome The variable in which the inequality should be measures, for example health. 
@@ -31,7 +31,7 @@
 #' }
 #' @references Clarke, P. M., Gerdtham, U. G., Johannesson, M., Bingefors, K., & Smith, L. (2002). On the measurement of relative and absolute income-related health inequality. Social Science & Medicine, 55(11), 1923-1928
 #' @references Erreygers, G. (2009). Correcting the concentration index. Journal of health economics, 28(2), 504-515
-#' @references Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalities in health: measurement, computation, and statistical inference.Journal of econometrics, 77(1), 87-103.
+#' @references Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalities in health: measurement, computation, and statistical inference. Journal of econometrics, 77(1), 87-103.
 #' @references O'Donnel, O., O'Neill S., Van Ourti T., & Walsh B. (2016). Conindex: Estimation of Concentration Indices. The Stata Journal 16(1): 112-138.
 #' @references O’Donnell, O., Van Doorslaer, E. , Wagstaff, A., Lindelow, M., 2008. Analyzing Health Equity Using Household Survey Data: A Guide to Techniques and Their Implementation, World Bank Publications. The World Bank.
 #' @importFrom stats na.omit weighted.mean lm coef cov.wt
@@ -50,12 +50,12 @@
 #'
 #' plot(ci.bmi)
 #' 
-#' # Wagstaff type with binary outcome and robust standard errors that should correspond to Stata's
+#' # Wagstaff type with binary outcome and robust standard errors that should correspond to Stata's (depends on 'sandwich')
 #' 
-#' \dontrun{
-#'   ci.bmi.b <- ci(housing$income, hsousing$high.bmi, type = "CIw", robust_se = TRUE, 
-#'                  rse_type = "HC1")
-#' }
+#' 
+#' ci.bmi.b <- ci(housing$income, housing$high.bmi, type = "CIw", robust_se = TRUE, 
+#'    rse_type = "HC1")
+#' 
 ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "CIw"), method = c("linreg_delta", "linreg_convenience", "cov_convenience", "direct"), df_correction = T, robust_se = F, rse_type = "HC3") {
   argname_outcome <-deparse(substitute(outcome))
   argname_ineqvar <-deparse(substitute(ineqvar))
@@ -168,7 +168,7 @@ ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "C
 	  # concentration_index <- 2 * sum(ordered_df$weights * (ordered_df$outcome - mean_outcome) * (weighted_rank_ordered - meanw_rank) / mean_outcome)
 	  
 	  # calculate variance of the ci for weighted microcase data
-	  # see Kakwani et al (eq 14) with qi = qt, R = ft and y = x (orig)
+	  # see Kakwani et al. (eq 14) with qi = qt, R = ft and y = x (orig)
 	  # or worldbank document 8.9
 	  qi <- cumsum(ordered_df$outcome) / sum(ordered_df$outcome)
 	  qilag <- c(0, qi[-n])

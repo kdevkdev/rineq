@@ -78,17 +78,13 @@ contrib.probit <- contribution(fit.probit, housing$income, type = "CIw")
 summary(contrib.probit)
 plot(contrib.probit, decreasing = FALSE,horiz = TRUE)
 
-\dontrun{
 
-   ## Marginal effects probit using package 'mfx': Decomposition based on predicted outcome
-   library(mfx)
-   fit.mfx <-probitmfx(high.bmi ~ sex + tenure + place + age, data = housing)
-   
-   contrib.mfx <- contribution(fit.mfx, housing$income, type = "CIw") 
-   summary(contrib.mfx, type="CIw")
-   plot(contrib.mfx, decreasing = FALSE, horiz = TRUE)
+## Marginal effects probit using package 'mfx': Decomposition based on predicted outcome
+fit.mfx <-mfx::probitmfx(high.bmi ~ sex + tenure + place + age, data = housing)
 
-}
+contrib.mfx <- contribution(fit.mfx, housing$income, type = "CIw") 
+summary(contrib.mfx, type="CIw")
+plot(contrib.mfx, decreasing = FALSE, horiz = TRUE)
 
 }
 \references{

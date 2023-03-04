@@ -25,7 +25,7 @@ Description: Functions to calculate the relative, generalized, and Erreygers
     corrected concentration index; plot Lorenz curves; and decompose health
     inequalities using (generalized) linear models, survival models, and
     regression. 
-    Forked by Brecht Devleesschauwer from the decomp package originally (no longer on CRAN), now maintained by Kaspar Walter Meili. Compared to the earlier rineq version on github by Brecht Devleesschauwer (<https://github.com/brechtdv/rineq>), the regression tree functionality has been removed for now. 
+    Forked by Brecht Devleesschauwer from the 'decomp' package originally (no longer on CRAN), now maintained by Kaspar Walter Meili. Compared to the earlier 'rineq' version on 'github' by Brecht Devleesschauwer (<https://github.com/brechtdv/rineq>), the regression tree functionality has been removed for now. 
     Improvements compared to earlier versions include improved plotting of decomposition and concentration, and added functionality to calculate the concentration index with different methods, calculation of robust standard errors, and support for marginal effects probit regression for decomposition. The development version is available at <https://github.com/kdevkdev/rineq>.
 Depends: R (>= 3.5.0)
 Imports: stats, graphics
@@ -39,3 +39,4 @@ LazyData: true
 RoxygenNote: 7.2.3
 Encoding: UTF-8
 Config/testthat/edition: 3
+Language: en-Us
