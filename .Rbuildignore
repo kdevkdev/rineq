@@ -5,6 +5,6 @@
 ^\.gitignore$
 ^\.gitattributes$
 ^\.Rhistory$
-^\.cran-comments.md$
+^cran-comments\.md$
 ^CRAN-SUBMISSION$
 ^\.git$
