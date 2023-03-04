@@ -6,14 +6,14 @@
 #' @param outcome The variable in which the inequality should be measures, for example health. 
 #' @param weights Optional, used to weigh the observations. Defaults to equal weights for all observations. 
 #' @param type The type of concentration index to be calculated: relative concentration index (\code{CI}, default), generalized concentration index (\code{CIg}), concentration index with Erreygers Correction \code{CIc}, or Wagstaff concentration index suitable for bounded and binary outcomes \code{CIw}
-#' @param method Defines the calculaqtion method. 
+#' @param method Defines the calculation method. 
 #'   \code{linreg_delta}: Based on linear regression without transforming the left hand side variable. Computes correct standard errors that take into account the sampling variability of the estimate of the mean (O’Donnell et al. 2008, Owen et al. 2016)    
 #'   \code{linreg_convenience}): Based on simpler regression with transformed left hand side variable. Standard errors do not take into account thee sampling variability of the estimate of the mean(O’Donnell et al. 2008, Owen et al. 2016)
-#'   \code{cov_convenience}: Based on covariance. Equivalent to linreg_convenience (O’Donnell et al. 2008, Owen et al. 2016)
+#'   \code{cov_convenience}: Based on covariance. Equivalent to \code{linreg_convenience} (O’Donnell et al. 2008, Owen et al. 2016)
 #'   \code{direct}: Using direct formula, standard errors do no take weighting appropriately into account  (O’Donnell et al. 2008, Kakwani et al. 1997) 
-#' @param df_correction If \code{TRUE} (default), calculates the concentration index based on the population variance (backcalculated from the sample variance).
-#' @param robust_se Uses robust standard errors if \code{TRUE}. Only available for the linreg_* type methods. Requires the sandwich package.
-#' @param rse_type  Type argument for the \code{vcovHC()}. 'HC3' is suggested default, set to 'HC1' for stata compatibility. See \code{?sandwich::vcovHC()} for options. 
+#' @param df_correction If \code{TRUE} (default), calculates the concentration index based on the population variance (derived from the sample variance).
+#' @param robust_se Uses robust standard errors if \code{TRUE}. Only available for the \code{linreg_*} type methods. Requires the \code{sandwich} package.
+#' @param rse_type  Type argument for the \code{vcovHC()}. 'HC3' is suggested default, set to 'HC1' for Stata compatibility. See \code{?sandwich::vcovHC()} for options. 
 #'
 #' @return An  S3 object of class \code{hci}. Contains:
 #' \itemize{
@@ -27,7 +27,7 @@
 #'   \item \code{n} Number of observations after removing \code{NA}
 #'   \item \code{robust_se} Were robust standard errors calculated?
 #'   \item \code{rse_type} Type of robust standard errors. 
-#'   \item \code{df_correction} Were the degree of freedoms backkalculated to population level?
+#'   \item \code{df_correction} Do the degrees of freedom correspond to a sample?
 #' }
 #' @references Clarke, P. M., Gerdtham, U. G., Johannesson, M., Bingefors, K., & Smith, L. (2002). On the measurement of relative and absolute income-related health inequality. Social Science & Medicine, 55(11), 1923-1928
 #' @references Erreygers, G. (2009). Correcting the concentration index. Journal of health economics, 28(2), 504-515

@@ -3,7 +3,7 @@
 \docType{data}
 \name{housing}
 \alias{housing}
-\title{Artifical exmaple data on housing conditions}
+\title{Artificial example data on housing conditions}
 \format{
 \code{data.frame} object. 
 
@@ -12,11 +12,11 @@ Variable list:
 \item{id}{unique identifier per person}
 \item{sex}{female or male}
 \item{age}{integer, from 20 to 94}
-\item{tenure}{categorical. One of homeless, irregular, own_appartment, own_house, or rent}
+\item{tenure}{categorical. One of homeless, irregular, own_apartment, own_house, or rent}
 \item{height}{height in cm }
 \item{weight}{weight in kg}
 \item{bmi}{weight/(height/100)^2}
-\item{income}{continous, imaginary currency without unit}
+\item{income}{continuous, imaginary currency without unit}
 }
 }
 \source{

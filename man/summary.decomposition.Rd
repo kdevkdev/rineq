@@ -11,7 +11,7 @@
 
 \item{digits}{Number of digits, defaults to R `digits` option}
 
-\item{addcoefs}{Wether or not to add coefficients (defaulst to `FALSE`)}
+\item{addcoefs}{Whether or not to add coefficients (defaults to `FALSE`)}
 
 \item{...}{Additional parameters, currently unused}
 }

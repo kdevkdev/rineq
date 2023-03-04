@@ -1,4 +1,4 @@
-#' Artifical exmaple data on housing conditions
+#' Artificial example data on housing conditions
 #'
 #' Microdata with a permissive license that includes continuous data on health and income is hard to come by. In stead of real data, the package thus includes an imaginary dataset.
 #' 
@@ -9,11 +9,11 @@
 #' \item{id}{unique identifier per person}
 #' \item{sex}{female or male}
 #' \item{age}{integer, from 20 to 94}
-#' \item{tenure}{categorical. One of homeless, irregular, own_appartment, own_house, or rent}
+#' \item{tenure}{categorical. One of homeless, irregular, own_apartment, own_house, or rent}
 #' \item{height}{height in cm }
 #' \item{weight}{weight in kg}
 #' \item{bmi}{weight/(height/100)^2}
-#' \item{income}{continous, imaginary currency without unit}
+#' \item{income}{continuous, imaginary currency without unit}
 #'}
 #' @docType data
 #'
