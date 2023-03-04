@@ -1,7 +1,10 @@
 # Checking
 Initial submit to CRAN. I ran R CMD check , and all checks and building in devtools to iron out issues. None remaining as far as i can tell (except rhub complaining about some miktext directory left, but that seems to be an rhub bug.
 
-Also my first time to submit on CRAN, apologies in advance for oversights and mistakes. In particular I am not entirely sure about where to put the 'mfx' and 'sandwich' package depencencies.
+Also my first time to submit on CRAN, apologies in advance for oversights and mistakes.
+
+* One thing i am unsure about where to put the 'mfx' and 'sandwich' package depencencies.
+* Fixed unquoted software names, thank you for pointing this out.
 
 # Background
 
