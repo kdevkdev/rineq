@@ -8,19 +8,21 @@ The `rineq` package provides functions to  calculate the relative, generalized, 
 #### Available functions
 
 Concentration index
-<table>
-<tr><td><code>ci</code></td><td>Calculate the relative, generalized, or Erreygers corrected concentration index</td></tr>
-<tr><td><code>correct_sign</code></td><td>Correct negative values in the health variable</td></tr>
-</table>
+| Function           | Description                                                                         |
+|--------------------|-------------------------------------------------------------------------------------|
+| `ci`               | Calculate the relative, generalized, or Erreygers corrected concentration index     |
+| `correct_sign`     | Correct negative values in the health variable                                      |
+| `contribution`     | Decompose the Relative Concentration Index into its components                      |
 
-Decomposition
-<table>
-<tr><td><code>contribution</code></td><td>Decompose the Relative Concentration Index into its components</td></tr>
-</table>
 
 #### Install
 
-To download and install the latest development version from GitHub:
+Install the version on CRAN:
+```r
+install.packages("rineq")
+```
+
+or download and install the latest development version from GitHub using `devtools`:
 ```r
 devtools::install_github("kdevkdev/rineq")
 ```

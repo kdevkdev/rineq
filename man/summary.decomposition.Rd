@@ -2,19 +2,23 @@
 % Please edit documentation in R/summary.decomposition.R
 \name{summary.decomposition}
 \alias{summary.decomposition}
-\title{Summary for decomposition}
+\title{Prints and returns a summary for a \code{decomposition} object.}
 \usage{
 \method{summary}{decomposition}(object, digits = getOption("digits"), addcoefs = FALSE, ...)
 }
 \arguments{
-\item{object}{Result of a decomposition}
+\item{object}{Result of a decomposition analysis, of class \code{decomposition}}
 
-\item{digits}{Number of digits, defaults to R `digits` option}
+\item{digits}{Number of digits, defaults to R \code{digits} option}
 
-\item{addcoefs}{Whether or not to add coefficients (defaults to `FALSE`)}
+\item{addcoefs}{Whether or not to add coefficients (defaults to \code{FALSE})}
 
 \item{...}{Additional parameters, currently unused}
 }
+\value{
+A data frame frame with columns for the absolute and relative contribution, elasticity, concentration index including confidence intervals,
+and whether correction was applied. If specified using \code{addcoefs}, the coefficients are included as the first column.
+}
 \description{
-Summary for decomposition
+Prints and returns a summary for a \code{decomposition} object.
 }

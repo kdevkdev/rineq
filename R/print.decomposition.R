@@ -1,3 +1,7 @@
+#' Print function for `decomposition` objects.
+#' @param x  Object of type `decomposition`
+#' @param ... Currently unused
+#' @return Invisibly returns `x` as the function is called for side effects. 
 #' @export
 print.decomposition <-
 function(x, ...) {
@@ -13,5 +17,8 @@ function(x, ...) {
   result$Corrected[x$corrected_coefficients] <- "yes"
   result$Corrected[!x$corrected_coefficients] <- "no"
   print(result)
+  
+  # return X since its a base-style plot function (https://adv-r.hadley.nz/functions.html) called for side effects    
+  invisible(x)
 }
 

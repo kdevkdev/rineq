@@ -1,23 +1,24 @@
 #' @title Corrects negative values in the health variable
 #'
-#' @description The Relative Concentration Index is not bonded between [-1,1] if the health variable contains both negative and positive values. This function corrects for this either by imputing a value of 0 for all negative values or by subtracting the minimum value.
+#' @description The Relative Concentration Index is not bonded between \eqn{[-1,1]} if the health variable contains both negative and positive values. This function corrects for this either by imputing a value of 0 for all negative values or by subtracting the minimum value.
 #'
 #' @usage correct_sign(x, shift = TRUE)
 #' 
 #' @param x A numeric vector, typically representing health.
-#' @param shift If \code{FALSE} (the default), 0 is imputed for all negative values in \code{x}. If \code{TRUE} the minimum value of \code{x} is subtracted from it.
+#' @param shift If `FALSE` (the default), 0 is imputed for all negative values in `x`. If `TRUE` the minimum value of `x` is subtracted from it.
 #'
-#' @return Returns a list with 2 components:
+#' @return `correct_sign()` returns a list with 2 components:
 #' \itemize{
-#' \item{corrected}{corrected version of \code{x}}
-#' \item{modified}{logical, \code{TRUE} when any of the elements of \code{x} have been changed}
+#' \item{corrected}{corrected version of `x`}
+#' \item{modified}{logical, `TRUE` when any of the elements of `x` have been changed}
+#' `corrected_value()` returns the corrected value if passed the result of `correct_sign()`
+#' `is_corrected()` returns `TRUE` if a modifications was made if passed the result of `correct_sign()`, `FALSE` otherwise
 #' }
-#' These components can be extracted with the functions \code{correctedValue} and \code{isCorrected}.
+#' These components can be extracted with the functions `corrected_value` and `is_corrected`.
 #' 
 #' @author Peter Konings
 #' 
 #' @export
-#'
 #' @examples
 #' data("housing")
 #'
@@ -55,5 +56,15 @@ function(x, shift = TRUE) {
 	}
     # return the original vector if everything is ok, otherwise the modified one.
     return(list(correctedx = x, modified = modified))
+}
+#' @describeIn correct_sign Return the corrected value
+#' @export
+corrected_value <-  function(x) {
+    return(x$correctedx)
+}
+#' @describeIn correct_sign Check if the sign was corrected
+#' @export
+is_corrected <-  function(x) {
+    return(x$modified)
 }
 

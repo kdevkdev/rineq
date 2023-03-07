@@ -1,8 +1,10 @@
-#' Summary for decomposition 
-#' @param object Result of a decomposition
+#' Prints and returns a summary for a `decomposition` object. 
+#' @param object Result of a decomposition analysis, of class `decomposition`
 #' @param digits Number of digits, defaults to R `digits` option
 #' @param addcoefs Whether or not to add coefficients (defaults to `FALSE`)
 #' @param ... Additional parameters, currently unused
+#' @return  A data frame frame with columns for the absolute and relative contribution, elasticity, concentration index including confidence intervals, 
+#' and whether correction was applied. If specified using `addcoefs`, the coefficients are included as the first column. 
 #' @importFrom stats confint
 #' @export
 summary.decomposition <-
@@ -10,7 +12,7 @@ function(object, digits = getOption('digits'), addcoefs = FALSE, ...) {
 
   ds <- digits
     
-  if (!inherits(object,"decomposition")) stop("Object is not of class decomposition")
+  if (!inherits(object,"decomposition")) stop("object is not of class decomposition")
   cat("Overall CI:", round(concentration_index(object$overall_ci),ds), "\n")
   cat("95% confidence interval:", round(confint(object$overall_ci),ds),"\n")
   if (object$outcome_corrected) cat("(based on a corrected value)\n")
@@ -31,5 +33,6 @@ function(object, digits = getOption('digits'), addcoefs = FALSE, ...) {
   result$Corrected <- ""
   result$Corrected[object$corrected_coefficients] <- "yes"
   result$Corrected[!object$corrected_coefficients] <- "no"
-  return(result)
+  print(result)
+  invisible(result)
 }

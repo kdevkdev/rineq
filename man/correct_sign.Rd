@@ -2,9 +2,15 @@
 % Please edit documentation in R/correct-sign.R
 \name{correct_sign}
 \alias{correct_sign}
+\alias{corrected_value}
+\alias{is_corrected}
 \title{Corrects negative values in the health variable}
 \usage{
 correct_sign(x, shift = TRUE)
+
+corrected_value(x)
+
+is_corrected(x)
 }
 \arguments{
 \item{x}{A numeric vector, typically representing health.}
@@ -12,16 +18,25 @@ correct_sign(x, shift = TRUE)
 \item{shift}{If \code{FALSE} (the default), 0 is imputed for all negative values in \code{x}. If \code{TRUE} the minimum value of \code{x} is subtracted from it.}
 }
 \value{
-Returns a list with 2 components:
+\code{correct_sign()} returns a list with 2 components:
 \itemize{
 \item{corrected}{corrected version of \code{x}}
 \item{modified}{logical, \code{TRUE} when any of the elements of \code{x} have been changed}
+\code{corrected_value()} returns the corrected value if passed the result of \code{correct_sign()}
+\code{is_corrected()} returns \code{TRUE} if a modifications was made if passed the result of \code{correct_sign()}, \code{FALSE} otherwise
 }
-These components can be extracted with the functions \code{correctedValue} and \code{isCorrected}.
+These components can be extracted with the functions \code{corrected_value} and \code{is_corrected}.
 }
 \description{
-The Relative Concentration Index is not bonded between [-1,1] if the health variable contains both negative and positive values. This function corrects for this either by imputing a value of 0 for all negative values or by subtracting the minimum value.
+The Relative Concentration Index is not bonded between \eqn{[-1,1]} if the health variable contains both negative and positive values. This function corrects for this either by imputing a value of 0 for all negative values or by subtracting the minimum value.
 }
+\section{Functions}{
+\itemize{
+\item \code{corrected_value()}: Return the corrected value
+
+\item \code{is_corrected()}: Check if the sign was corrected
+
+}}
 \examples{
 data("housing")
 

@@ -1,3 +1,7 @@
+#' Plots the concentration curve for an `hci` object.
+#' @param x  Object with of `hci`
+#' @param ... Further arguments passed to `base::plot()`
+#' @return Invisibly returns `x` as the function is called for side effects. 
 #' @importFrom graphics lines
 #' @export
 plot.hci <-
@@ -18,7 +22,9 @@ function(x, ...) {
     plot(c(0,100), c(0,100), type = "l", main = "Concentration curve",  col = "black", ... , 
          xlab = paste0("Cumulative % ranked inequality"), 
          ylab = paste0("Cumulative % outcome"))
-    lines(xval*100, yval*100, col = "darkred", lty = "dashed")   
-  
-  }
+    lines(xval*100, yval*100, col = "darkred", lty = "dashed")
+    
+    # return X since its a base-style plot function (https://adv-r.hadley.nz/functions.html) called for side effects    
+    invisible(x)
+}
 

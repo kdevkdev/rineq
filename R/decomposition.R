@@ -5,7 +5,7 @@
 #' @param ranker Ranking variable
 #' @param wt Weights
 #' @param correction Apply sign correction? 
-#' @param citype CI type to be calculated, defaults to \code{CI}. Use \code{CIw} for binary outcomes. 
+#' @param citype CI type to be calculated, defaults to `CI`. Use `CIw` for binary outcomes. 
 #'
 #' @return S3 object of class decomposition
 #' @importFrom stats confint

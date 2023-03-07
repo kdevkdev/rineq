@@ -2,9 +2,9 @@
 % Please edit documentation in R/plot.decomposition.R
 \name{plot.decomposition}
 \alias{plot.decomposition}
-\title{Plots a barplot of the contribution percentages. Sets custom plot margins and uses the graphical parameters `xlim`, `horiz`, `las` and `xlab` which therefore cannot be customized}
+\title{Plots a barplot of the contribution percentages in a \code{decomposition} object. Sets custom plot margins and uses the graphical parameters \code{xlim}, \code{horiz}, \code{las} and \code{xlab} which therefore cannot be customized}
 \usage{
-\method{plot}{decomposition}(x, decreasing = TRUE, horiz = F, ...)
+\method{plot}{decomposition}(x, decreasing = TRUE, horiz = FALSE, ...)
 }
 \arguments{
 \item{x}{Object returned from decomposition function}
@@ -13,8 +13,11 @@
 
 \item{horiz}{If the barplots should be printed horizontally or vertically}
 
-\item{...}{Graphical parameter passed on to `barplot`}
+\item{...}{Graphical parameter passed on to \code{base::barplot()}}
+}
+\value{
+Invisibly returns \code{x} as the function is called for side effects.
 }
 \description{
-Plots a barplot of the contribution percentages. Sets custom plot margins and uses the graphical parameters `xlim`, `horiz`, `las` and `xlab` which therefore cannot be customized
+Plots a barplot of the contribution percentages in a \code{decomposition} object. Sets custom plot margins and uses the graphical parameters \code{xlim}, \code{horiz}, \code{las} and \code{xlab} which therefore cannot be customized
 }

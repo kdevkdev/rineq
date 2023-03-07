@@ -1,4 +1,5 @@
 #' @method contribution probitmfx
+#' @importFrom stats weights model.matrix
 #' @export
 contribution.probitmfx <-
   function(object, ranker, correction = TRUE, type = "CI") {

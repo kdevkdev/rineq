@@ -1,34 +1,34 @@
 #' Calculates different type of concentration indexes
 #'
-#' This function calculates the relative concentration index (Kakwani et al.), the generalized concentration index (Clarke et al., 2002), the Wagstaff index for bounded variables (Owen et al. 2016), and the concentration index with Erreygers' correction (Erreygers et al., 2009).  It returns an object of class \code{hci} for which confidence intervals, summaries and plots are defined.
+#' This function calculates the relative concentration index (Kakwani et al.), the generalized concentration index (Clarke et al., 2002), the Wagstaff index for bounded variables (Owen et al. 2016), and the concentration index with Erreygers' correction (Erreygers et al., 2009).  It returns an object of class `hci` for which confidence intervals, summaries and plots are defined.
 #'
 #' @param ineqvar Used for ranking, usually relates to the socioeconomic position, for example income. 
 #' @param outcome The variable in which the inequality should be measures, for example health. 
 #' @param weights Optional, used to weigh the observations. Defaults to equal weights for all observations. 
-#' @param type The type of concentration index to be calculated: relative concentration index (\code{CI}, default), generalized concentration index (\code{CIg}), concentration index with Erreygers Correction \code{CIc}, or Wagstaff concentration index suitable for bounded and binary outcomes \code{CIw}
-#' @param method Defines the calculation method. 
-#'   \code{linreg_delta}: Based on linear regression without transforming the left hand side variable. Computes correct standard errors that take into account the sampling variability of the estimate of the mean (O’Donnell et al. 2008, Owen et al. 2016)    
-#'   \code{linreg_convenience}): Based on simpler regression with transformed left hand side variable. Standard errors do not take into account thee sampling variability of the estimate of the mean(O’Donnell et al. 2008, Owen et al. 2016)
-#'   \code{cov_convenience}: Based on covariance. Equivalent to \code{linreg_convenience} (O’Donnell et al. 2008, Owen et al. 2016)
-#'   \code{direct}: Using direct formula, standard errors do no take weighting appropriately into account  (O’Donnell et al. 2008, Kakwani et al. 1997) 
-#' @param df_correction If \code{TRUE} (default), calculates the concentration index based on the population variance (derived from the sample variance).
-#' @param robust_se Uses robust standard errors if \code{TRUE}. Only available for the \code{linreg_*} type methods. Requires the \code{sandwich} package.
-#' @param rse_type  Type argument for the \code{vcovHC()}. 'HC3' is suggested default, set to 'HC1' for Stata compatibility. See \code{?sandwich::vcovHC()} for options. 
+#' @param type The type of concentration index to be calculated: relative concentration index (`CI`, default), generalized concentration index (`CIg`), concentration index with Erreygers Correction `CIc`, or Wagstaff concentration index suitable for bounded and binary outcomes `CIw`
+#' @param method Defines the calculation method. One of:  
+#'   * `linreg_delta`: Based on linear regression without transforming the left hand side variable. Computes correct standard errors that take into account the sampling variability of the estimate of the mean (O’Donnell et al. 2008, Owen et al. 2016)    
+#'   * `linreg_convenience`): Based on simpler regression with transformed left hand side variable. Standard errors do not take into account thee sampling variability of the estimate of the mean(O’Donnell et al. 2008, Owen et al. 2016)
+#'   * `cov_convenience`: Based on covariance. Equivalent to `linreg_convenience` (O’Donnell et al. 2008, Owen et al. 2016)
+#'   * `direct`: Using direct formula, standard errors do no take weighting appropriately into account  (O’Donnell et al. 2008, Kakwani et al. 1997) 
+#' @param df_correction If `TRUE` (default), calculates the concentration index based on the population variance (derived from the sample variance).
+#' @param robust_se Uses robust standard errors if `TRUE`. Only available for the `linreg_*` type methods. Requires the `sandwich` package.
+#' @param rse_type  Type argument for the `vcovHC()`. 'HC3' is suggested default, set to 'HC1' for Stata compatibility. See `?sandwich::vcovHC()` for options. 
 #'
-#' @return An  S3 object of class \code{hci}. Contains:
-#' \itemize{
-#'   \item \code{concentration_index} The concentration index
-#'   \item \code{type} The type 
-#'   \item \code{method} The method used for calculation
-#'   \item \code{variance} The variance,used for calculation of confidence intervals
-#'   \item \code{fractional_rank} Computed fractional rank \code{NA}  
-#'   \item \code{outcome} Outcome after removing \code{NA} 
-#'   \item \code{call} Call signature
-#'   \item \code{n} Number of observations after removing \code{NA}
-#'   \item \code{robust_se} Were robust standard errors calculated?
-#'   \item \code{rse_type} Type of robust standard errors. 
-#'   \item \code{df_correction} Do the degrees of freedom correspond to a sample?
-#' }
+#' @return An  S3 object of class `hci`. Contains:
+#' 
+#'   * `concentration_index` The concentration index
+#'   * `type` The type 
+#'   * `method` The method used for calculation
+#'   * `variance` The variance,used for calculation of confidence intervals
+#'   * `fractional_rank` Computed fractional rank `NA`  
+#'   * `outcome` Outcome after removing `NA` 
+#'   * `call` Call signature
+#'   * `n` Number of observations after removing `NA`
+#'   * `robust_se` Were robust standard errors calculated?
+#'   * `rse_type` Type of robust standard errors. 
+#'   * `df_correction` Do the degrees of freedom correspond to a sample?
+#' 
 #' @references Clarke, P. M., Gerdtham, U. G., Johannesson, M., Bingefors, K., & Smith, L. (2002). On the measurement of relative and absolute income-related health inequality. Social Science & Medicine, 55(11), 1923-1928
 #' @references Erreygers, G. (2009). Correcting the concentration index. Journal of health economics, 28(2), 504-515
 #' @references Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalities in health: measurement, computation, and statistical inference. Journal of econometrics, 77(1), 87-103.
@@ -57,7 +57,9 @@
 #' ci.bmi.b <- ci(housing$income, housing$high.bmi, type = "CIw", robust_se = TRUE, 
 #'    rse_type = "HC1")
 #' 
-ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "CIw"), method = c("linreg_delta", "linreg_convenience", "cov_convenience", "direct"), df_correction = T, robust_se = F, rse_type = "HC3") {
+ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "CIw"), 
+               method = c("linreg_delta", "linreg_convenience", "cov_convenience", "direct"), 
+               df_correction = TRUE, robust_se = FALSE, rse_type = "HC3") {
   argname_outcome <-deparse(substitute(outcome))
   argname_ineqvar <-deparse(substitute(ineqvar))
   
@@ -106,7 +108,7 @@ ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "C
   meanw_rank  <- mean(cdf$weighted_rank)
 
   # variance of weighted rank
-  var_ranku = var_wt(cdf$weighted_rank, w = cdf$weights, na.rm = T)
+  var_ranku = var_wt(cdf$weighted_rank, wt = cdf$weights, na.rm = T)
 	
   ###### actual core calulations ###############
   if(method == "linreg_delta")

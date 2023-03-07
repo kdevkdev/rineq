@@ -5,9 +5,9 @@
 \alias{housing}
 \title{Artificial example data on housing conditions}
 \format{
-\code{data.frame} object. 
+\code{data.frame} object.
 
-Variable list: 
+Variable list:
 \describe{
 \item{id}{unique identifier per person}
 \item{sex}{female or male}

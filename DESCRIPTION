@@ -1,30 +1,22 @@
 Package: rineq
-Title: Statistical Analysis of Health Inequalities
-Version: 0.2.2
+Title: Concentration Index and Decomposition for Health Inequalities
+Version: 0.2.3
 Date: 2023-03-04
-Authors@R: c(person("Brecht", "Devleesschauwer", role = c("aut"),
+Authors@R: c(person("Brecht", "Devleesschauwer", role = c("aut", "cph"),
 	                email = "brechtdv@gmail.com"),
-             person("Saveria", "Willimès", role = c("aut"),
+             person("Saveria", "Willimès", role = c("aut", "cph"),
 	                email = "swillimes@yahoo.com"),
-             person("Carine", "Van Malderen", role = c("aut"),
+             person("Carine", "Van Malderen", role = c("aut", "cph"),
 	                email = "carine.vanmalderen@uclouvain.be"),
-             person("Peter", "Konings", role = c("aut"),
+             person("Peter", "Konings", role = c("aut", "cph"),
 	                email = "peter.konings@ki.se"),
-             person("Niko", "Speybroeck", role = c("aut"),
+             person("Niko", "Speybroeck", role = c("aut", "cph"),
 	                email = "niko.speybroeck@uclouvain.be"),
-			 person("Kaspar", "Meili", role = c("aut", "cre"),
-	                email = "meilikaspar@yahoo.de"))
-Author: Brecht Devleesschauwer [aut],
-  Saveria Willimès [aut],
-  Carine Van Malderen [aut],
-  Peter Konings [aut],
-  Niko Speybroeck [aut],
-  Kaspar Meili [aut, cre]
-Maintainer: Kaspar Meili <meilikaspar@yahoo.de>
-Description: Functions to calculate the relative, generalized, and Erreygers
+			 person("Kaspar", "Meili", role = c("aut", "cre", "cph"),
+	                email = "meilikaspar@yahoo.de",  comment = c(ORCID = "0000-0002-9889-4406")))
+Description: Relative, generalized, and Erreygers
     corrected concentration index; plot Lorenz curves; and decompose health
-    inequalities using (generalized) linear models, survival models, and
-    regression. 
+    inequalities using (generalized) linear models, survival models, survey+weighted, and marginal effects probit models.
     Forked by Brecht Devleesschauwer from the 'decomp' package originally (no longer on CRAN), now maintained by Kaspar Walter Meili. Compared to the earlier 'rineq' version on 'github' by Brecht Devleesschauwer (<https://github.com/brechtdv/rineq>), the regression tree functionality has been removed for now. 
     Improvements compared to earlier versions include improved plotting of decomposition and concentration, and added functionality to calculate the concentration index with different methods, calculation of robust standard errors, and support for marginal effects probit regression for decomposition. The development version is available at <https://github.com/kdevkdev/rineq>.
 Depends: R (>= 3.5.0)
@@ -36,7 +28,9 @@ Suggests:
     survey
 License: GPL-2 | GPL-3
 LazyData: true
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Encoding: UTF-8
 Config/testthat/edition: 3
 Language: en-Us
+URL: https://github.com/kdevkdev/rineq/

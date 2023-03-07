@@ -18,28 +18,28 @@ contribution(object, ranker, correction = TRUE, type = "CI")
 \value{
 An object of class \code{decomposition} containing the following components:
 \itemize{
-  \item{\code{betas}}{ A numeric vector containing regression coefficients}
-  \item{\code{partial_cis}}{ A numeric vector containing partial confidence intervals}
-  \item{\code{confints}}{ A numeric vector containing 95\% confidence intervals for the partial concentration indices}
-  \item{\code{averages}}{ Weighted averages of every variable in the model}
-  \item{\code{ci_contribution}}{ Confidence intervals for contributions}
-  \item{\code{overall_ci}}{ Confidence intervals for the concentration index}
-  \item{\code{corrected_coefficients}}{ Corrected coefficients using \code{correct_sign()} if, requested \code{FALSE} otherwise}
-  \item{\code{outcome_corrected}}{ Corrected outcome \code{correct_sign()} if requested, \code{FALSE} otherwise}
-  \item{\code{rows}}{ Rownames of used rows in the model}
+\item \code{betas} A numeric vector containing regression coefficients
+\item \code{partial_cis} A numeric vector containing partial confidence intervals
+\item \code{confints} A numeric vector containing 95\\% confidence intervals for the partial concentration indices
+\item \code{averages} Weighted averages of every variable in the model
+\item \code{ci_contribution} Confidence intervals for contributions
+\item \code{overall_ci} Confidence intervals for the concentration index
+\item \code{corrected_coefficients} Corrected coefficients using \code{correct_sign()} if, requested \code{FALSE} otherwise
+\item \code{outcome_corrected} Corrected outcome \code{correct_sign()} if requested, \code{FALSE} otherwise
+\item \code{rows} Rownames of used rows in the model
 }
 }
 \description{
-Function to decompose the Relative Concentration Index into its components
+Currently compatible with \code{lm}, \code{glm} logit and probit, \code{svyglm}, \code{coxph} and \code{mfx} marginal effects probits
 }
 \details{
 These functions decompose the Relative Concentration Index into its components using a (generalized) linear model, optionally using a survey design, or a Cox Proportional Hazards model. Print, summary and plot methods have been defined for the results.
 
-If \code{correction} is \code{TRUE} negative values of components or outcome are corrected using \code{\link{correct_sign}} with option \code{shift = FALSE}.
+If \code{correction} is \code{TRUE} negative values of components or outcome are corrected using \verb{[correct_sign()]} with option \code{shift = FALSE}.
 
 For non-linear models the decomposition needs to rely on a linear approximations of the effects. There are different approaches. One is to work on the scale of the \code{glm} coefficients and calculate the concentration index based on the predicted outcome. (Konings et al., 2010, Speybroeck et al., 2010). Another approach is to use marginal effects as beta coefficients and the original outcome (O'Donnel et al. 2008).
 
-This function supports both. For \code{glm}, \code{coxpy}, and \code{svyglm} models, the first approach is used. The second approach is implemented for model objects of type \code{probitmfx} and \code{logitmfx} from the 'mfx' package. See examples.
+This function supports both. For \code{glm}, \code{coxph}, and \code{svyglm} models, the first approach is used. The second approach is implemented for model objects of type \code{probitmfx} and \code{logitmfx} from the 'mfx' package. See examples.
 
 Use the \code{decomposition} function directly to manually specify coefficients, outcomes, and model matrices for arbitrary models.
 }
@@ -78,16 +78,15 @@ contrib.probit <- contribution(fit.probit, housing$income, type = "CIw")
 summary(contrib.probit)
 plot(contrib.probit, decreasing = FALSE,horiz = TRUE)
 
-\dontrun{
 
-    ## Marginal effects probit using package 'mfx': Decomposition based on predicted outcome
-    fit.mfx <-mfx::probitmfx(high.bmi ~ sex + tenure + place + age, data = housing)
-    
-    contrib.mfx <- contribution(fit.mfx, housing$income, type = "CIw") 
-    summary(contrib.mfx, type="CIw")
-    plot(contrib.mfx, decreasing = FALSE, horiz = TRUE)
+## Marginal effects probit using package 'mfx': Decomposition based on predicted outcome
+fit.mfx <-mfx::probitmfx(high.bmi ~ sex + tenure + place + age, data = housing)
 
-}
+contrib.mfx <- contribution(fit.mfx, housing$income, type = "CIw") 
+summary(contrib.mfx, type="CIw")
+plot(contrib.mfx, decreasing = FALSE, horiz = TRUE)
+
+
 }
 \references{
 Konings, P., Harper, S., Lynch, J., Hosseinpoor, A.R., Berkvens, D., Lorant, V., Geckova, A., Speybroeck, N., 2010. Analysis of socioeconomic health inequalities using the concentration index. Int J Public Health 55, 71–74. https://doi.org/10.1007/s00038-009-0078-y

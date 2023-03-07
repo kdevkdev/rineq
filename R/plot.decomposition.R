@@ -1,4 +1,4 @@
-#' Plots a barplot of the contribution percentages. Sets custom plot margins and uses the graphical parameters `xlim`, `horiz`, `las` and `xlab` which therefore cannot be customized 
+#' Plots a barplot of the contribution percentages in a `decomposition` object. Sets custom plot margins and uses the graphical parameters `xlim`, `horiz`, `las` and `xlab` which therefore cannot be customized 
 #' 
 #' @importFrom graphics barplot 
 #' @importFrom graphics par 
@@ -6,18 +6,19 @@
 #' @param decreasing Whether to sort contributions decreasing or not
 #' @param x Object returned from decomposition function
 #' @param horiz If the barplots should be printed horizontally or vertically
-#' @param ...  Graphical parameter passed on to `barplot`
+#' @param ...  Graphical parameter passed on to `base::barplot()`
+#' @return Invisibly returns `x` as the function is called for side effects. 
 #' @export
 plot.decomposition <-
-  function(x, decreasing = TRUE, horiz = F, ...) {
+  function(x, decreasing = TRUE, horiz = FALSE, ...) {
     if(!inherits(x,"decomposition")) stop("Object is not of class decomposition")
     
     # somewow base limits fail to be nice, calculate our own (horiz steers if bars are horizontal)
     lims = range(pretty(x$rel_contribution))
     
     
-    bk.cex.axis <- par("cex.axis")
-    bk.mai  <- par("mai")
+    bk_cex_axis <- par("cex.axis")
+    bk_mai  <- par("mai")
     # set soem pars
     par(cex.axis = 1)
     
@@ -33,7 +34,9 @@ plot.decomposition <-
       barplot(sort(x$rel_contribution, decreasing = decreasing),xlim=lims, horiz = TRUE, las = 2, xlab = "Proportion",...)
     }
     # restore
-    par(cex.axis =  bk.cex.axis)
-    par(mai =  bk.mai)
+    par(cex.axis =  bk_cex_axis)
+    par(mai =  bk_mai)
     
+    # return X since its a base-style plot function (https://adv-r.hadley.nz/functions.html)
+    invisible(x)
   }

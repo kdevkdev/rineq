@@ -6,6 +6,7 @@
 ^\.gitattributes$
 ^\.Rhistory$
 ^cran-comments\.md$
+^cran-comments-kate-swp\.md$
 ^CRAN-SUBMISSION$
 ^\.git$
 \.pdf$

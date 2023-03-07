@@ -1,3 +1,8 @@
+#' Prints the a summary of the concentration index object `hci`
+#' 
+#' @param object  Object of type `hci`
+#' @param ... Currently unused
+#' @return No returns value. Directly prints to the standard output connection. 
 #' @importFrom stats confint
 #' @export
 summary.hci <- function(object, ...) {
