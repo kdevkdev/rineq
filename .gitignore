@@ -1,6 +1,7 @@
 # History files
 .Rhistory
 .Rapp.history
+.cran-comments.md.kate-swp
 
 # Session Data files
 .RData
