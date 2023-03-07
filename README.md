@@ -26,3 +26,5 @@ or download and install the latest development version from GitHub using `devtoo
 ```r
 devtools::install_github("kdevkdev/rineq")
 ```
+
+![R CMD check](https://github.com/kdevkdev/rineq/actions/workflows/R-CMD-check.yaml/badge.svg)
