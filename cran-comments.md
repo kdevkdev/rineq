@@ -20,6 +20,7 @@ After 2. submission (March 4):
     corrected concentration index... '
     * Add documentation on return value for `plot.decomposition`, `plot.hci`, `print.hci`, `summary.hci`, `summary.decomposition`, and `print.decomposition`
     * Remove `\dontrun` from examples as its unlikely that it will take more than 5 seconds to run 
+    * Use `on.exit()` to reset `par()` parameter to initual values
 
 * Other changes:
     * changed filenames: var_vt.R to var-vt.R and rank_wt.R to rank-wt.R for concsiteny

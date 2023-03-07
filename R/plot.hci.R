@@ -1,7 +1,7 @@
 #' Plots the concentration curve for an `hci` object.
 #' @param x  Object with of `hci`
 #' @param ... Further arguments passed to `base::plot()`
-#' @return Invisibly returns `x` as the function is called for side effects. 
+#' @return Invisibly returns `x` as the function is called for side effects (plotting). 
 #' @importFrom graphics lines
 #' @export
 plot.hci <-

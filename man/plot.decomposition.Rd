@@ -16,7 +16,7 @@
 \item{...}{Graphical parameter passed on to \code{base::barplot()}}
 }
 \value{
-Invisibly returns \code{x} as the function is called for side effects.
+Invisibly returns \code{x} as the function is called for side effects (plotting).
 }
 \description{
 Plots a barplot of the contribution percentages in a \code{decomposition} object. Sets custom plot margins and uses the graphical parameters \code{xlim}, \code{horiz}, \code{las} and \code{xlab} which therefore cannot be customized

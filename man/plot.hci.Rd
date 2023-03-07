@@ -12,7 +12,7 @@
 \item{...}{Further arguments passed to \code{base::plot()}}
 }
 \value{
-Invisibly returns \code{x} as the function is called for side effects.
+Invisibly returns \code{x} as the function is called for side effects (plotting).
 }
 \description{
 Plots the concentration curve for an \code{hci} object.
