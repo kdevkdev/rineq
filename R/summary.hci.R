@@ -5,6 +5,12 @@
 #' @return No returns value. Directly prints to the standard output connection. 
 #' @importFrom stats confint
 #' @export
+#' 
+#' @examples
+#' data(housing)
+#' ci.bmi <- ci(ineqvar = housing$income, outcome = housing$bmi, method = "direct")
+#' summary(ci.bmi)
+#' 
 summary.hci <- function(object, ...) {
     if (!inherits(object,'hci')) stop("Object is not of class hci")
     cat("Call:\n")

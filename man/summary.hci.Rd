@@ -17,3 +17,9 @@ No returns value. Directly prints to the standard output connection.
 \description{
 Prints the a summary of the concentration index object \code{hci}
 }
+\examples{
+data(housing)
+ci.bmi <- ci(ineqvar = housing$income, outcome = housing$bmi, method = "direct")
+summary(ci.bmi)
+
+}

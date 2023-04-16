@@ -1,3 +1,9 @@
+# rineq 0.2.3
+* Further fix issues for CRAN lease, related to spelling, documentation
+* Examples for all packages supported decomposition model types
+* Improve handling of whether intercept should be included or not for `contribution()`
+
+
 # rineq 0.2.2
 
 * Get ready for release on CRAN. Improve spelling, documentation

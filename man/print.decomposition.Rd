@@ -17,3 +17,12 @@ Invisibly returns \code{x} as the function is called for side effects.
 \description{
 Print function for \code{decomposition} objects.
 }
+\examples{
+data(housing)
+# Linear regression &  decompose 
+fit.lm <- lm(bmi ~ sex + tenure + place + age,data = housing)
+contrib.lm <- contribution(fit.lm, housing$income)
+
+# print
+print(contrib.lm)
+}

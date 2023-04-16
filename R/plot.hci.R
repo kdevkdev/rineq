@@ -4,8 +4,13 @@
 #' @return Invisibly returns `x` as the function is called for side effects (plotting). 
 #' @importFrom graphics lines
 #' @export
-plot.hci <-
-function(x, ...) {
+#' 
+#' @examples
+#' data(housing)
+#' ci.bmi <- ci(ineqvar = housing$income, outcome = housing$bmi, method = "direct")
+#' plot(ci.bmi)
+#'  
+plot.hci <-function(x, ...) {
     if (!inherits(x,'hci')) stop("Object is not of class hci")
   
     o <- order(x$ineqvar)

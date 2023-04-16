@@ -1,17 +1,23 @@
 # Checks
 
 No NOTES, WARNIGNS, or ERROS besides: 
-
 - New package NOTE
 - Rhub complaining about some miktext directory left, but that seems to be an rhub bug.
 
 
-Initial submisiion to CRAN. 
+# Comments
+Initial submision to CRAN. Not sure if for `contribution()`
 
 
-# Resubmission
+
+# 3rd resubmission of initially new submission
+
+
+
 
 After 2. submission (March 4):
+
+
 
 * Changes in response to comments:
     * changed `T` to `TRUE` and `F` to FALSE in `ci` function declaration (defaults for `df_correction`, `robust_se`)
@@ -39,7 +45,11 @@ After 2. submission (March 4):
     * change argument name of   w in `var_wt()` to wt for consistency with `rank_wt()`
     * convert to roxygen2 .rmd format
     * convert README.md to markdown
-
+    * remove `as.double.hci()` as it was not used
+    * Add doccumentation, return tags and examples for `confint.hci()`
+    * Example for decomposition()
+    * Slight documentaiont and spelling improvements throughout
+    * Improve the handling of excluding the intercet for for the `contribution.xxx` functions. They now get an additional parameter by which the intercept an be specified to be either included or excluded, named `intercept`, taking character values of either `include` or `exclude` (default)
 
 
 

@@ -17,3 +17,9 @@ Invisibly returns \code{x} as the function is called for side effects (plotting)
 \description{
 Plots the concentration curve for an \code{hci} object.
 }
+\examples{
+data(housing)
+ci.bmi <- ci(ineqvar = housing$income, outcome = housing$bmi, method = "direct")
+plot(ci.bmi)
+ 
+}

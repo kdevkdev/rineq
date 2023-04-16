@@ -21,3 +21,12 @@ Invisibly returns \code{x} as the function is called for side effects (plotting)
 \description{
 Plots a barplot of the contribution percentages in a \code{decomposition} object. Sets custom plot margins and uses the graphical parameters \code{xlim}, \code{horiz}, \code{las} and \code{xlab} which therefore cannot be customized
 }
+\examples{
+data(housing)
+# Linear regression & decompose 
+fit.lm <- lm(bmi ~ sex + tenure + place + age,data = housing)
+contrib.lm <- contribution(fit.lm, housing$income)
+
+# plot horizontally, in increasing order
+plot(contrib.lm, decreasing = FALSE, horiz = TRUE)
+}

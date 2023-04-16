@@ -4,16 +4,18 @@
 \alias{contribution}
 \title{Function to decompose the Relative Concentration Index into its components}
 \usage{
-contribution(object, ranker, correction = TRUE, type = "CI")
+contribution(object, ranker, correction = TRUE, type = "CI", intercept = "exclude")
 }
 \arguments{
-\item{object}{The model result object. class \code{coxph}, \code{glm}, \code{lm} or \code{svyglm}, \code{probitmfx}, \code{logitmfx}; the outcome should be the health variable and the predictors the components. For \code{summary()}: an object of class \code{decomposition}.}
+\item{object}{The model result object. class \code{coxph}, \code{glm}, \code{lm} or \code{svyglm}, \code{probitmfx}, \code{logitmfx}; the outcome should be the health variable and the predictors the components.}
 
 \item{ranker}{Ranking variable with the same length as the outcome.}
 
 \item{correction}{A logical indicating whether the global and partial confidence should be corrected for negative values using imputation.}
 
-\item{type}{Concentration index type that the decomposition should be applied to. Defaults to \code{CI}. Use \code{CIw} for binary outcomes.}
+\item{type}{Character, concentration index type that the decomposition should be applied to. Defaults to \code{CI}. Use \code{CIw} for binary outcomes.}
+
+\item{intercept}{Character, one of \code{exclude} or \code{include}, defaults to \code{exclude}. If \code{exclude}, the intercept coefficient will not included in the decomposition analysis, if set to \code{include}, it will be included.}
 }
 \value{
 An object of class \code{decomposition} containing the following components:
@@ -24,24 +26,26 @@ An object of class \code{decomposition} containing the following components:
 \item \code{averages} Weighted averages of every variable in the model
 \item \code{ci_contribution} Confidence intervals for contributions
 \item \code{overall_ci} Confidence intervals for the concentration index
-\item \code{corrected_coefficients} Corrected coefficients using \code{correct_sign()} if, requested \code{FALSE} otherwise
-\item \code{outcome_corrected} Corrected outcome \code{correct_sign()} if requested, \code{FALSE} otherwise
+\item \code{corrected_coefficients} Corrected coefficients using  \code{\link[=correct_sign]{correct_sign()}} if, requested \code{FALSE} otherwise
+\item \code{outcome_corrected} Corrected outcome  \code{\link[=correct_sign]{correct_sign()}} if requested, \code{FALSE} otherwise
 \item \code{rows} Rownames of used rows in the model
 }
 }
 \description{
-Currently compatible with \code{lm}, \code{glm} logit and probit, \code{svyglm}, \code{coxph} and \code{mfx} marginal effects probits
+Currently compatible with \code{lm}, \code{glm} logit and probit, \code{svyglm}, \code{coxph} and \code{mfx} marginal effects probit.
 }
 \details{
 These functions decompose the Relative Concentration Index into its components using a (generalized) linear model, optionally using a survey design, or a Cox Proportional Hazards model. Print, summary and plot methods have been defined for the results.
 
-If \code{correction} is \code{TRUE} negative values of components or outcome are corrected using \verb{[correct_sign()]} with option \code{shift = FALSE}.
+If \code{correction} is \code{TRUE} negative values of components or outcome are corrected using \code{\link[=correct_sign]{correct_sign()}} with option \code{shift = FALSE}.
 
 For non-linear models the decomposition needs to rely on a linear approximations of the effects. There are different approaches. One is to work on the scale of the \code{glm} coefficients and calculate the concentration index based on the predicted outcome. (Konings et al., 2010, Speybroeck et al., 2010). Another approach is to use marginal effects as beta coefficients and the original outcome (O'Donnel et al. 2008).
 
 This function supports both. For \code{glm}, \code{coxph}, and \code{svyglm} models, the first approach is used. The second approach is implemented for model objects of type \code{probitmfx} and \code{logitmfx} from the 'mfx' package. See examples.
 
-Use the \code{decomposition} function directly to manually specify coefficients, outcomes, and model matrices for arbitrary models.
+Per default, the intercept in models is excluded, but this can be changed by setting the the \code{intercept} argument to \code{include}, but this may conceptually make less sense and is more appropriate if the model does not contain an intercept.
+
+Use \code{\link[=decomposition]{decomposition()}} function directly to manually specify coefficients, outcomes, and model matrices for arbitrary models.
 }
 \section{Warning}{
 
@@ -54,14 +58,13 @@ data(housing)
 ## Linear regression direct decomposition
 fit.lm <- lm(bmi ~ sex + tenure + place + age,data = housing)
        
-
-## decompose relative concentration index
+# decompose relative concentration index
 contrib.lm <- contribution(fit.lm, housing$income) 
 summary(contrib.lm)
 plot(contrib.lm, decreasing = FALSE, horiz = TRUE)
+
     
-    
-## GLM: Decomposition based on predicted outcome
+# GLM: Decomposition based on predicted outcome
 fit.logit <-glm(high.bmi ~ sex + tenure + place + age, data = housing)
 
 contrib.logit <- contribution(fit.logit, housing$income) 
@@ -69,7 +72,7 @@ summary(contrib.logit)
 plot(contrib.logit, decreasing = FALSE,horiz = TRUE)
 
 
-## GLM probit: Decomposition based on predicted outcome
+# GLM probit: Decomposition based on predicted outcome
 fit.probit <-glm(high.bmi ~ sex + tenure + place + age, data = housing, 
                 family = binomial(link = probit))
 
@@ -79,12 +82,30 @@ summary(contrib.probit)
 plot(contrib.probit, decreasing = FALSE,horiz = TRUE)
 
 
-## Marginal effects probit using package 'mfx': Decomposition based on predicted outcome
+# Marginal effects probit using package 'mfx': Decomposition based on predicted outcome
 fit.mfx <-mfx::probitmfx(high.bmi ~ sex + tenure + place + age, data = housing)
 
 contrib.mfx <- contribution(fit.mfx, housing$income, type = "CIw") 
 summary(contrib.mfx, type="CIw")
 plot(contrib.mfx, decreasing = FALSE, horiz = TRUE)
+
+
+# package survey svy 
+des = survey::svydesign(~1, data= housing, weights = rep(1, NROW(housing)))
+fit.svy = survey::svyglm(bmi ~ tenure+height+weight, design = des)
+contrib.svy = contribution(fit.svy, housing$income)
+
+
+# adopted from the `coxph` example in survival package 
+testcph <- data.frame(time = c(4,3,1,1,2,2,3), 
+              status = c(1,1,1,0,1,1,0), 
+              x      = c(0,2,1,1,1,0,0), 
+              sex    = c(0,0,0,0,1,1,1),
+              income = c(100,50, 20, 20, 50, 60,100))
+              
+# Fit a stratified model 
+fit.coxph = survival::coxph(survival::Surv(time, status) ~ x + survival::strata(sex), testcph) 
+contrib.coxph = contribution(fit.coxph, testcph$income) 
 
 
 }

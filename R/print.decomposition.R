@@ -3,8 +3,16 @@
 #' @param ... Currently unused
 #' @return Invisibly returns `x` as the function is called for side effects. 
 #' @export
-print.decomposition <-
-function(x, ...) {
+#' 
+#' @examples 
+#' data(housing)
+#' # Linear regression &  decompose 
+#' fit.lm <- lm(bmi ~ sex + tenure + place + age,data = housing)
+#' contrib.lm <- contribution(fit.lm, housing$income)
+#' 
+#' # print
+#' print(contrib.lm)
+print.decomposition <-function(x, ...) {
   if (!inherits(x,"decomposition")) stop("Object is not of class decomposition")
   cat("Overall CI:", concentration_index(x$overall_ci), "\n")
   if (x$outcome_corrected) cat("(based on a corrected value)\n")

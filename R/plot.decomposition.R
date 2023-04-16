@@ -9,6 +9,15 @@
 #' @param ...  Graphical parameter passed on to `base::barplot()`
 #' @return Invisibly returns `x` as the function is called for side effects (plotting). 
 #' @export
+#' 
+#' @examples
+#' data(housing)
+#' # Linear regression & decompose 
+#' fit.lm <- lm(bmi ~ sex + tenure + place + age,data = housing)
+#' contrib.lm <- contribution(fit.lm, housing$income)
+#' 
+#' # plot horizontally, in increasing order
+#' plot(contrib.lm, decreasing = FALSE, horiz = TRUE)
 plot.decomposition <-
   function(x, decreasing = TRUE, horiz = FALSE, ...) {
     if(!inherits(x,"decomposition")) stop("Object is not of class decomposition")

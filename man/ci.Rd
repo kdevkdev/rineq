@@ -22,9 +22,9 @@ ci(
 
 \item{weights}{Optional, used to weigh the observations. Defaults to equal weights for all observations.}
 
-\item{type}{The type of concentration index to be calculated: relative concentration index (\code{CI}, default), generalized concentration index (\code{CIg}), concentration index with Erreygers Correction \code{CIc}, or Wagstaff concentration index suitable for bounded and binary outcomes \code{CIw}}
+\item{type}{Character, the type of concentration index to be calculated: relative concentration index (\code{CI}, default), generalized concentration index (\code{CIg}), concentration index with Erreygers Correction \code{CIc}, or Wagstaff concentration index suitable for bounded and binary outcomes \code{CIw}}
 
-\item{method}{Defines the calculation method. One of:
+\item{method}{Character, defines the calculation method. One of:
 \itemize{
 \item \code{linreg_delta}: Based on linear regression without transforming the left hand side variable. Computes correct standard errors that take into account the sampling variability of the estimate of the mean (O’Donnell et al. 2008, Owen et al. 2016)
 \item \code{linreg_convenience}): Based on simpler regression with transformed left hand side variable. Standard errors do not take into account thee sampling variability of the estimate of the mean(O’Donnell et al. 2008, Owen et al. 2016)
@@ -36,7 +36,7 @@ ci(
 
 \item{robust_se}{Uses robust standard errors if \code{TRUE}. Only available for the \verb{linreg_*} type methods. Requires the \code{sandwich} package.}
 
-\item{rse_type}{Type argument for the \code{vcovHC()}. 'HC3' is suggested default, set to 'HC1' for Stata compatibility. See \code{?sandwich::vcovHC()} for options.}
+\item{rse_type}{Character, type argument for the \code{vcovHC()}. \code{HC3}' is suggested as default, set to \code{HC1} for Stata compatibility. See \code{?sandwich::vcovHC()} for options.}
 }
 \value{
 An  S3 object of class \code{hci}. Contains:

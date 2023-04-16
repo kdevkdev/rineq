@@ -19,11 +19,18 @@ decomposition(outcome, betas, mm, ranker, wt, correction, citype = "CI")
 
 \item{correction}{Apply sign correction?}
 
-\item{citype}{CI type to be calculated, defaults to \code{CI}. Use \code{CIw} for binary outcomes.}
+\item{citype}{Character, CI type to be calculated, defaults to \code{CI}. Use \code{CIw} for binary outcomes.}
 }
 \value{
 S3 object of class decomposition
 }
 \description{
-Decomposition analysis
+Used by the wrapper \code{\link[=contribution]{contribution()}} but can be used manually. Calculates the decomposition for a given regression model.
+}
+\examples{
+fit.lm = lm(mtcars$mpg ~ mtcars$cyl)
+decomp = decomposition(mtcars$mpg, coefficients(fit.lm), fit.lm$model, 
+                       mtcars$hp, wt = rep(1, nrow(mtcars)), correction = FALSE) 
+summary(decomp)
+
 }

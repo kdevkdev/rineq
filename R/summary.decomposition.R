@@ -7,8 +7,16 @@
 #' and whether correction was applied. If specified using `addcoefs`, the coefficients are included as the first column. 
 #' @importFrom stats confint
 #' @export
-summary.decomposition <-
-function(object, digits = getOption('digits'), addcoefs = FALSE, ...) {
+#' 
+#' @examples
+#' data(housing)
+#' # Linear regression & decompose 
+#' fit.lm <- lm(bmi ~ sex + tenure + place + age,data = housing)
+#' contrib.lm <- contribution(fit.lm, housing$income)
+#' 
+#' # print
+#' print(contrib.lm)
+summary.decomposition <-function(object, digits = getOption('digits'), addcoefs = FALSE, ...) {
 
   ds <- digits
     

@@ -22,3 +22,12 @@ and whether correction was applied. If specified using \code{addcoefs}, the coef
 \description{
 Prints and returns a summary for a \code{decomposition} object.
 }
+\examples{
+data(housing)
+# Linear regression & decompose 
+fit.lm <- lm(bmi ~ sex + tenure + place + age,data = housing)
+contrib.lm <- contribution(fit.lm, housing$income)
+
+# print
+print(contrib.lm)
+}

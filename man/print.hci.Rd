@@ -17,3 +17,9 @@ Invisibly returns \code{x} as the function is called for side effects.
 \description{
 Prints an \code{hci} object.
 }
+\examples{
+data(housing)
+ci.bmi <- ci(ineqvar = housing$income, outcome = housing$bmi, method = "direct")
+print(ci.bmi)
+
+}
