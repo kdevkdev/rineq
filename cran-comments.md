@@ -9,16 +9,10 @@ Other testing:
 - Rhub complaining about some 'lastMiKTeXException' detrius directory, but that seems to be an rhub bug.
 
 
-# Comments
-Initial submision to CRAN. Not sure if for `contribution()`
-
-
-
-# 3rd resubmission of initially new submission
+# 3rd resubmission of initially new package submission
 
 Changes since 2. submission (March 4):
-
-* Changes in response to comments:
+* Changes in response to CRAN comments:
     * changed `T` to `TRUE` and `F` to FALSE in `ci` function declaration (defaults for `df_correction`, `robust_se`)
     * changed `F` to `FALSE `in `plot.decomposition` function declaration (default for `horiz`)
     * Removed 'Functions to' from start of DESCRIPTION, so that it directlystarts with 'Relative, generalized, and Erreygers
