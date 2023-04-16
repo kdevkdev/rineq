@@ -1,4 +1,4 @@
-#' Return concentration index value of `hci` objectds
+#' Return concentration index value of `hci` objects
 #' @noRd
 concentration_index <-
   function(object) {

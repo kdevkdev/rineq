@@ -1,5 +1,8 @@
 # rineq 0.2.3
-* Further fix issues for CRAN lease, related to spelling, documentation
+* Further fix issues for CRAN release, related to spelling, policies, and  documentation
+    * documented return value for all functions, even if called for side effects
+    * FALSE/TRUE instead of T/F
+    * safeguarding against altering user options in plot and not restoring them
 * Examples for all packages supported decomposition model types
 * Improve handling of whether intercept should be included or not for `contribution()`
 

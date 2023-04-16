@@ -1,8 +1,12 @@
 # Checks
 
-No NOTES, WARNIGNS, or ERROS besides: 
-- New package NOTE
-- Rhub complaining about some miktext directory left, but that seems to be an rhub bug.
+devtools::chec():
+0 errors ✔ | 0 warnings ✔ | 1 note ✖
+
+(New package NOTE)
+
+Other testing:
+- Rhub complaining about some 'lastMiKTeXException' detrius directory, but that seems to be an rhub bug.
 
 
 # Comments
@@ -12,12 +16,7 @@ Initial submision to CRAN. Not sure if for `contribution()`
 
 # 3rd resubmission of initially new submission
 
-
-
-
-After 2. submission (March 4):
-
-
+Changes since 2. submission (March 4):
 
 * Changes in response to comments:
     * changed `T` to `TRUE` and `F` to FALSE in `ci` function declaration (defaults for `df_correction`, `robust_se`)
@@ -53,7 +52,7 @@ After 2. submission (March 4):
 
 
 
-After 1. submission (March 4):
+Changes after 1. submission (March 4):
 
 * Changes in response to comments:
     * Fixed unquoted software names, thank you for pointing this out
