@@ -2,9 +2,6 @@
 #' @export
 contribution.coxph <-
 function(object, ranker, correction = TRUE, type = "CI", intercept = "exclude") {
-    # The ranking variable (wealth, income,...) should be given explicitely.
-    # Throw an error if this is not a numeric one
-    if (!inherits(ranker,"numeric")) stop("Not a numeric ranking variable")
     
     # extract the outcome of the coxph object
     outcome <- object$linear.predictor

@@ -2,15 +2,12 @@
 #' @export
 contribution.glm <-
 function(object, ranker, correction = TRUE, type = "CI", intercept = "exclude") {
-    # The ranking variable (wealth, income,...) should be given explicitly
-    # Throw an error if this is not a numeric one
-    if (!inherits(ranker, "numeric")) stop("Not a numeric ranking variable")
     
     intercept <- match.arg(intercept,choices = c("exclude", "include"))
   
     # extract the outcome of the glm object
     outcome <- predict(object)
-    
+
     # extract the weights of the glm object
     wt <- object$prior.weight
 

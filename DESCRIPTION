@@ -1,6 +1,6 @@
 Package: rineq
 Title: Concentration Index and Decomposition for Health Inequalities
-Version: 0.2.3
+Version: 0.2.4
 Date: 2023-04-16
 Authors@R: c(person("Brecht", "Devleesschauwer", role = c("aut", "cph"),
 	                email = "brechtdv@gmail.com"),
@@ -16,7 +16,7 @@ Authors@R: c(person("Brecht", "Devleesschauwer", role = c("aut", "cph"),
 	                email = "meilikaspar@yahoo.de",  comment = c(ORCID = "0000-0002-9889-4406")))
 Description: Relative, generalized, and Erreygers corrected concentration index; plot Lorenz curves; and decompose health
     inequalities into contributing factors. The package currently works with (generalized) linear models, survival models, complex survey models, and marginal effects probit models.
-    originally forked by Brecht Devleesschauwer from the 'decomp' package  (no longer on CRAN), rineq is now maintained by Kaspar Walter Meili. Compared to the earlier 'rineq' version on 'github' by Brecht Devleesschauwer (<https://github.com/brechtdv/rineq>), the regression tree functionality has been removed.
+    originally forked by Brecht Devleesschauwer from the 'decomp' package  (no longer on CRAN), 'rineq' is now maintained by Kaspar Walter Meili. Compared to the earlier 'rineq' version on 'github' by Brecht Devleesschauwer (<https://github.com/brechtdv/rineq>), the regression tree functionality has been removed.
     Improvements compared to earlier versions include improved plotting of decomposition and concentration, added functionality to calculate the concentration index with different methods, calculation of robust standard errors, and support for the decomposition analysis using marginal effects probit regression models. The development version is available at <https://github.com/kdevkdev/rineq>.
 Depends: R (>= 3.5.0)
 Imports: stats, graphics

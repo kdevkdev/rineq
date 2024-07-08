@@ -2,9 +2,6 @@
 #' @export
 contribution.svyglm <-
 function(object, ranker, correction = TRUE, type = "CI", intercept = "exclude") {
-    # The ranking variable (wealth, income,...) should be given explicitely.
-    # Throw an error if this is not a numeric one
-    if(!inherits(ranker,"numeric")) stop("Not a numeric ranking variable")
   
     intercept = match.arg(intercept, c("exclude", "include"))
     

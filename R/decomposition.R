@@ -1,6 +1,7 @@
 #' @title Decomposition analysis
 #' 
 #' @description Used by the wrapper [contribution()] but can be used manually. Calculates the decomposition for a given regression model. 
+#' @details NOTE: Only models with data with ordinary indexes are supported (starting from 1, sequentially increasing by increments of 1). For the case were rows with `NA` are automatically omitted by the model function, the used indices are guessed based on the row names of the model matrix and then used for accessing the `ranker` variable. However, this may lead to issues if the row names do not correspond to ordinary integer indexes. 
 #' 
 #' @param outcome Outcome variable
 #' @param betas  Beta coefficients from regression. 
@@ -21,8 +22,20 @@
 #' 
 #' @export
 decomposition <- function(outcome, betas, mm, ranker, wt, correction, citype = "CI") {    
-    # define an index vector for the rows that are actually used in the model, rownames are strings
+  
+  
+    # The ranking variable (wealth, income,...) should be given explicitly
+    # Throw an error if it is not numeric or integer
+    stopifnot("Ranking variable is not numeric" = inherits(ranker, "numeric") || inherits(ranker, "integer"))
+  
+  
+    # define an index vector for the rows that are actually used in the model, rownames are strings that should be converted to integer
     rows <- as.numeric(rownames(mm))
+    
+    if(any(is.na(ranker[rows])) || length(rows) != length(ranker)){
+      stop("Rownames of modelmatrix are invalid ranker indeces, rerun the model with data with ordinary integer indeces as row names") 
+    } 
+              
 
     # correct the sign for the partial outcomes when requested
     corrected <- rep(FALSE, ncol(mm))
@@ -63,7 +76,7 @@ decomposition <- function(outcome, betas, mm, ranker, wt, correction, citype = "
     # then subtract the sum of all partial contributions
     CIoverall <- ci(ranker[rows], as.numeric(outcome), wt, type = citype)
     CIresid <- concentration_index(CIoverall) - sumOfContributions
-    
+
     # add the residual CI to the contributions vector and name it
     contributions <- c(CIresid, contributions)
     names(contributions)[1] <- "residual"
@@ -85,5 +98,6 @@ decomposition <- function(outcome, betas, mm, ranker, wt, correction, citype = "
 		 outcome_corrected = outcome_corrected,
 		 rows = rows)
     class(results) <- "decomposition"
+    
     return(results)   
 }
