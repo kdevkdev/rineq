@@ -12,7 +12,8 @@ ci(
   method = c("linreg_delta", "linreg_convenience", "cov_convenience", "direct"),
   df_correction = TRUE,
   robust_se = FALSE,
-  rse_type = "HC3"
+  rse_type = "HC3",
+  rank_function = rineq::rank_wt
 )
 }
 \arguments{
@@ -27,7 +28,7 @@ ci(
 \item{method}{Character, defines the calculation method. One of:
 \itemize{
 \item \code{linreg_delta}: Based on linear regression without transforming the left hand side variable. Computes correct standard errors that take into account the sampling variability of the estimate of the mean (O’Donnell et al. 2008, Owen et al. 2016)
-\item \code{linreg_convenience}): Based on simpler regression with transformed left hand side variable. Standard errors do not take into account thee sampling variability of the estimate of the mean(O’Donnell et al. 2008, Owen et al. 2016)
+\item \code{linreg_convenience}): Based on simpler regression with transformed left hand side variable. Standard errors do not take into account the sampling variability of the estimate of the mean(O’Donnell et al. 2008, Owen et al. 2016)
 \item \code{cov_convenience}: Based on covariance. Equivalent to \code{linreg_convenience} (O’Donnell et al. 2008, Owen et al. 2016)
 \item \code{direct}: Using direct formula, standard errors do no take weighting appropriately into account  (O’Donnell et al. 2008, Kakwani et al. 1997)
 }}
@@ -37,6 +38,8 @@ ci(
 \item{robust_se}{Uses robust standard errors if \code{TRUE}. Only available for the \verb{linreg_*} type methods. Requires the \code{sandwich} package.}
 
 \item{rse_type}{Character, type argument for the \code{vcovHC()}. \code{HC3}' is suggested as default, set to \code{HC1} for Stata compatibility. See \code{?sandwich::vcovHC()} for options.}
+
+\item{rank_function}{Function to calculate the weighted rank of \code{ineqvar}. Takes two arguments: the variable that holds the rank order information, and the weights for the ranks. \code{rineq} currently provides two, \code{rank_wt} (default, corresponds to code provided in the World Bank report by O’Donnell et al.,2008) and \code{rank_gwt} (generalized handling of ties as also used by the Stata Conindex command, initially published by van Ourti, (2004)).}
 }
 \value{
 An  S3 object of class \code{hci}. Contains:
@@ -86,7 +89,9 @@ Erreygers, G. (2009). Correcting the concentration index. Journal of health econ
 
 Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalities in health: measurement, computation, and statistical inference. Journal of econometrics, 77(1), 87-103.
 
-O'Donnel, O., O'Neill S., Van Ourti T., & Walsh B. (2016). Conindex: Estimation of Concentration Indices. The Stata Journal 16(1): 112-138.
+O'Donnel, O., O'Neill S., Van Ourti T., & Walsh B. (2016). Conindex: Estimation of Concentration Indices. The Stata Journal, 16(1): 112-138.
 
 O’Donnell, O., Van Doorslaer, E. , Wagstaff, A., Lindelow, M., 2008. Analyzing Health Equity Using Household Survey Data: A Guide to Techniques and Their Implementation, World Bank Publications. The World Bank.
+
+van Ourti, T., 2004.Measuring horizontal inequity in Belgian health care using a Gaussian random e¡ects two part count data model. Health Economics, 13: 705–724.
 }

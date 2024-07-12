@@ -46,6 +46,8 @@ This function supports both. For \code{glm}, \code{coxph}, and \code{svyglm} mod
 Per default, the intercept in models is excluded, but this can be changed by setting the the \code{intercept} argument to \code{include}, but this may conceptually make less sense and is more appropriate if the model does not contain an intercept.
 
 Use \code{\link[=decomposition]{decomposition()}} function directly to manually specify coefficients, outcomes, and model matrices for arbitrary models.
+
+NOTE: Only models with data with ordinary indexes are supported (starting from 1, sequentially increasing by increments of 1). For the case were rows with \code{NA} are automatically omitted by the model function, the used indices are guessed based on the row names of the model matrix and then used for accessing the \code{ranker} variable. However, this may lead to issues if the row names do not correspond to ordinary integer indexes.
 }
 \section{Warning}{
 

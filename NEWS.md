@@ -1,5 +1,6 @@
 # rineq 0.2.4
-* Safeguard against invalid indexes when accessing the ranking variable in the decomposition analysis.
+* Safeguard against invalid indexes when accessing the ranking variable in the decomposition analysis
+* Add additional rank function `rank_gwt` that implements the generalized version of the weighted fractional as suggested in van Ourti 2004, and using it for the concentration index leads to results compatible with stata's Conindex. It can be enabled with a new parameter in `ci()`;, `rank_function = rank_gwt()` that for compatibility has default value `rank_wt()`.
 
 # rineq 0.2.3
 * Further fix issues for CRAN release, related to spelling, policies, and  documentation

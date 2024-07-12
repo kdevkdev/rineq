@@ -8,13 +8,14 @@
 #' @param type Character, the type of concentration index to be calculated: relative concentration index (`CI`, default), generalized concentration index (`CIg`), concentration index with Erreygers Correction `CIc`, or Wagstaff concentration index suitable for bounded and binary outcomes `CIw`
 #' @param method Character, defines the calculation method. One of:  
 #'   * `linreg_delta`: Based on linear regression without transforming the left hand side variable. Computes correct standard errors that take into account the sampling variability of the estimate of the mean (O’Donnell et al. 2008, Owen et al. 2016)    
-#'   * `linreg_convenience`): Based on simpler regression with transformed left hand side variable. Standard errors do not take into account thee sampling variability of the estimate of the mean(O’Donnell et al. 2008, Owen et al. 2016)
+#'   * `linreg_convenience`): Based on simpler regression with transformed left hand side variable. Standard errors do not take into account the sampling variability of the estimate of the mean(O’Donnell et al. 2008, Owen et al. 2016)
 #'   * `cov_convenience`: Based on covariance. Equivalent to `linreg_convenience` (O’Donnell et al. 2008, Owen et al. 2016)
 #'   * `direct`: Using direct formula, standard errors do no take weighting appropriately into account  (O’Donnell et al. 2008, Kakwani et al. 1997) 
 #' @param df_correction If `TRUE` (default), calculates the concentration index based on the population variance (derived from the sample variance).
 #' @param robust_se Uses robust standard errors if `TRUE`. Only available for the `linreg_*` type methods. Requires the `sandwich` package.
 #' @param rse_type  Character, type argument for the `vcovHC()`. `HC3`' is suggested as default, set to `HC1` for Stata compatibility. See `?sandwich::vcovHC()` for options. 
-#'
+#' @param rank_function Function to calculate the weighted rank of `ineqvar`. Takes two arguments: the variable that holds the rank order information, and the weights for the ranks. `rineq` currently provides two, `rank_wt` (default, corresponds to code provided in the World Bank report by O’Donnell et al.,2008) and `rank_gwt` (generalized handling of ties as also used by the Stata Conindex command, initially published by van Ourti, (2004)). 
+#' 
 #' @return An  S3 object of class `hci`. Contains:
 #' 
 #'   * `concentration_index` The concentration index
@@ -32,8 +33,9 @@
 #' @references Clarke, P. M., Gerdtham, U. G., Johannesson, M., Bingefors, K., & Smith, L. (2002). On the measurement of relative and absolute income-related health inequality. Social Science & Medicine, 55(11), 1923-1928
 #' @references Erreygers, G. (2009). Correcting the concentration index. Journal of health economics, 28(2), 504-515
 #' @references Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalities in health: measurement, computation, and statistical inference. Journal of econometrics, 77(1), 87-103.
-#' @references O'Donnel, O., O'Neill S., Van Ourti T., & Walsh B. (2016). Conindex: Estimation of Concentration Indices. The Stata Journal 16(1): 112-138.
+#' @references O'Donnel, O., O'Neill S., Van Ourti T., & Walsh B. (2016). Conindex: Estimation of Concentration Indices. The Stata Journal, 16(1): 112-138.
 #' @references O’Donnell, O., Van Doorslaer, E. , Wagstaff, A., Lindelow, M., 2008. Analyzing Health Equity Using Household Survey Data: A Guide to Techniques and Their Implementation, World Bank Publications. The World Bank.
+#' @references van Ourti, T., 2004.Measuring horizontal inequity in Belgian health care using a Gaussian random e¡ects two part count data model. Health Economics, 13: 705–724.
 #' @importFrom stats na.omit weighted.mean lm coef cov.wt
 #' @export
 #' @examples
@@ -59,7 +61,7 @@
 #' 
 ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "CIw"), 
                method = c("linreg_delta", "linreg_convenience", "cov_convenience", "direct"), 
-               df_correction = TRUE, robust_se = FALSE, rse_type = "HC3") {
+               df_correction = TRUE, robust_se = FALSE, rse_type = "HC3", rank_function = rineq::rank_wt) {
   argname_outcome <-deparse(substitute(outcome))
   argname_ineqvar <-deparse(substitute(ineqvar))
   
@@ -93,13 +95,14 @@ ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "C
 	
 	
   cdf$weights_norm = cdf$weights / sum(cdf$weights)
-  cdf$rank = rank_wt(cdf$ineqvar, wt = rep(1,n))
+  
+  # cdf$rank = rank_wt(cdf$ineqvar, wt = rep(1,n))
 
   # calculate weighted average of the health variable
   mean_outcome <- weighted.mean(cdf$outcome, w = cdf$weights)
 
   # calculate weighed rank of the wealth variable
-  cdf$weighted_rank <- rank_wt(x = cdf$ineqvar, wt = cdf$weights)
+  cdf$weighted_rank <- rank_function(x = cdf$ineqvar, wt = cdf$weights)
 
   # correction factor for sample vs population degree of freedoms 
   if(df_correction) cf <- (n-1)/n else cf = 1
@@ -168,8 +171,7 @@ ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "C
 	  concentration_index <- 2 * sum(cdf$weights_norm * (cdf$outcome - mean_outcome) * (cdf$weighted_rank - meanw_rank) / mean_outcome)
 	  
 	  
-	  # concentration_index <- 2 * sum(ordered_df$weights * (ordered_df$outcome - mean_outcome) * (weighted_rank_ordered - meanw_rank) / mean_outcome)
-	  
+
 	  # calculate variance of the ci for weighted microcase data
 	  # see Kakwani et al. (eq 14) with qi = qt, R = ft and y = x (orig)
 	  # or worldbank document 8.9

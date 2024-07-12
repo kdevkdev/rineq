@@ -27,6 +27,9 @@ S3 object of class decomposition
 \description{
 Used by the wrapper \code{\link[=contribution]{contribution()}} but can be used manually. Calculates the decomposition for a given regression model.
 }
+\details{
+NOTE: Only models with data with ordinary indexes are supported (starting from 1, sequentially increasing by increments of 1). For the case were rows with \code{NA} are automatically omitted by the model function, the used indices are guessed based on the row names of the model matrix and then used for accessing the \code{ranker} variable. However, this may lead to issues if the row names do not correspond to ordinary integer indexes.
+}
 \examples{
 fit.lm = lm(mtcars$mpg ~ mtcars$cyl)
 decomp = decomposition(mtcars$mpg, coefficients(fit.lm), fit.lm$model, 

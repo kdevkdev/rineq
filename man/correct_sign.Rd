@@ -19,12 +19,13 @@ is_corrected(x)
 }
 \value{
 \code{correct_sign()} returns a list with 2 components:
-\itemize{
+\describe{
 \item{corrected}{corrected version of \code{x}}
-\item{modified}{logical, \code{TRUE} when any of the elements of \code{x} have been changed}
-\code{corrected_value()} returns the corrected value if passed the result of \code{correct_sign()}
-\code{is_corrected()} returns \code{TRUE} if a modifications was made if passed the result of \code{correct_sign()}, \code{FALSE} otherwise
-}
+\item{modified}{logical, \code{TRUE} when any of the elements of \code{x} have been changed}}
+\code{corrected_value()} returns the corrected value if passed the result of `correct_sign().
+
+\code{is_corrected()} returns \code{TRUE} if a modifications was made if passed the result of \code{correct_sign()}, \code{FALSE} otherwise.
+
 These components can be extracted with the functions \code{corrected_value} and \code{is_corrected}.
 }
 \description{

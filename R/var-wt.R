@@ -12,12 +12,13 @@
 #' var_wt(x, wt = x.weight)
 #' @export 
 var_wt<- function(x, wt, na.rm = FALSE) {
-  if(na.rm) 
-  {
-	i <-  !is.na(x)
+  
+  if(na.rm){
+  	i <-  !is.na(x)
     x <- x[i]
     wt <- wt[i]
   }
   s <- sum(wt)
+  
   return((sum(wt*x^2) * s - sum(wt*x)^2) / (s^2 - sum(wt^2)))
 }
