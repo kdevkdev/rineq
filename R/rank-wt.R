@@ -70,8 +70,8 @@ rank_gwt <- function(x, wt){
   q <- cs[rank_rank_max] # calculate proportion with at least x_i (using weighted proportions)
   
 
-  # shifted version - proportion for at least  x_l, where x_l is the net lowest value for position i
-  q_s <- c(0,cs[rank_rank_min-1])
+  # shifted version - proportion for at least  x_l, where x_l is the next lowest value for position i
+  q_s <- c(0, cs)[rank_rank_min]
   
   # calculate normalized generalized rank and return
   rg <- (q_s + 0.5*(q-q_s))/sum(wt)

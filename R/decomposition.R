@@ -40,10 +40,10 @@ decomposition <- function(outcome, betas, mm, ranker, wt, correction, citype = "
     } 
     
     if(any(is.na(ranker[rows]))){
-      stop("Rownames of modelmatrix are invalid ranker indeces, re-run the model with data without any or  with ordinary integer indeces as row names. Possibly caused by rows being automatically omitted in the model estimation, make sure to manually remove NAs before running the model.") 
+      stop("Rownames of modelmatrix are invalid ranker indeces, re-run the model with data without any or with ordinary integer indeces as row names. Possibly caused by rows being automatically omitted in the model estimation, make sure to manually remove NAs before running the model.") 
     } 
     if(length(rows) != length(ranker)){
-      stop("Length of rownames of model matrix does not correspond to ranker length, re-run the model with data without any or with ordinary integer indeces as row names. Possibly caused by rows being automatically omitted in the model estimation, make sure to manually remove NAs before running the model.") 
+      stop(paste0("Length of rownames of model matrix", length(rows)," does not correspond to 'ranker' length ", length(ranker),", re-run the model with data without any or with ordinary integer indeces as row names. Possibly caused by rows being automatically omitted in the model estimation, make sure to manually remove NAs before running the model."))
     }               
 
     # correct the sign for the partial outcomes when requested

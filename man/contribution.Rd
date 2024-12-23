@@ -106,7 +106,7 @@ testcph <- data.frame(time = c(4,3,1,1,2,2,3),
               income = c(100,50, 20, 20, 50, 60,100))
               
 # Fit a stratified model 
-fit.coxph = survival::coxph(survival::Surv(time, status) ~ x + survival::strata(sex), testcph) 
+fit.coxph = survival::coxph(Surv(time, status) ~ x + strata(sex), testcph) 
 contrib.coxph = contribution(fit.coxph, testcph$income) 
 
 

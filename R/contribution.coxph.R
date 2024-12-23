@@ -15,7 +15,7 @@ function(object, ranker, correction = TRUE, type = "CI", intercept = "exclude") 
     
     # extract the model matrix & coefficients of the coxph object
     # `intercept` has no influence here since coxph models do not have intercepts
-    mm <- model.matrix(object)[,names(object$coefficients)]
+    mm <- model.matrix(object)[,names(object$coefficients), drop = F]
     betas <- coefficients(object)
 
     # call the backend decomposition function
