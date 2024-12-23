@@ -8,14 +8,16 @@
 #' @param shift If `FALSE` (the default), 0 is imputed for all negative values in `x`. If `TRUE` the minimum value of `x` is subtracted from it.
 #'
 #' @return `correct_sign()` returns a list with 2 components:
-#' \describe{
-#' \item{corrected}{corrected version of `x`}
-#' \item{modified}{logical, `TRUE` when any of the elements of `x` have been changed}}
-#' `corrected_value()` returns the corrected value if passed the result of `correct_sign().
 #' 
-#' `is_corrected()` returns `TRUE` if a modifications was made if passed the result of `correct_sign()`, `FALSE` otherwise.
+#' * `corrected`: corrected version of `x`
+#' * `modified`:  logical, `TRUE` when any of the elements of `x` have been changed
+#`  These components can be extracted with the functions `corrected_value` and `is_corrected`.
 #' 
-#' These components can be extracted with the functions `corrected_value` and `is_corrected`.
+#' `corrected_value()`: returns the corrected value if passed the result of `correct_sign().
+#' 
+#' `is_corrected()`: returns `TRUE` if a modifications was made and `FALSE` otherwiss.  Takes as argument the result of `correct_sign()`, 
+#' 
+#' @md
 #' 
 #' @author Peter Konings
 #' 

@@ -33,7 +33,7 @@ decomposition <- function(outcome, betas, mm, ranker, wt, correction, citype = "
     rows <- as.numeric(rownames(mm))
     
     if(any(is.na(ranker[rows])) || length(rows) != length(ranker)){
-      stop("Rownames of modelmatrix are invalid ranker indeces, rerun the model with data with ordinary integer indeces as row names") 
+      stop("Rownames of modelmatrix are invalid ranker indeces, rerun the model with data with ordinary integer indeces as row names. Possibly caused by rows being automatically omitted in the model estimation, make sure to manually remove NAs before running the model.") 
     } 
               
 

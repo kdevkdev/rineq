@@ -19,14 +19,14 @@ is_corrected(x)
 }
 \value{
 \code{correct_sign()} returns a list with 2 components:
-\describe{
-\item{corrected}{corrected version of \code{x}}
-\item{modified}{logical, \code{TRUE} when any of the elements of \code{x} have been changed}}
-\code{corrected_value()} returns the corrected value if passed the result of `correct_sign().
+\itemize{
+\item \code{corrected}: corrected version of \code{x}
+\item \code{modified}:  logical, \code{TRUE} when any of the elements of \code{x} have been changed
+}
 
-\code{is_corrected()} returns \code{TRUE} if a modifications was made if passed the result of \code{correct_sign()}, \code{FALSE} otherwise.
+\code{corrected_value()}: returns the corrected value if passed the result of `correct_sign().
 
-These components can be extracted with the functions \code{corrected_value} and \code{is_corrected}.
+\code{is_corrected()}: returns \code{TRUE} if a modifications was made and \code{FALSE} otherwiss.  Takes as argument the result of \code{correct_sign()},
 }
 \description{
 The Relative Concentration Index is not bonded between \eqn{[-1,1]} if the health variable contains both negative and positive values. This function corrects for this either by imputing a value of 0 for all negative values or by subtracting the minimum value.

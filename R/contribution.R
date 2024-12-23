@@ -8,7 +8,7 @@
 #' @details This function supports both. For `glm`, `coxph`, and `svyglm` models, the first approach is used. The second approach is implemented for model objects of type `probitmfx` and `logitmfx` from the 'mfx' package. See examples. 
 #' @details Per default, the intercept in models is excluded, but this can be changed by setting the the `intercept` argument to `include`, but this may conceptually make less sense and is more appropriate if the model does not contain an intercept. 
 #' @details Use [decomposition()] function directly to manually specify coefficients, outcomes, and model matrices for arbitrary models. 
-#' @details NOTE: Only models with data with ordinary indexes are supported (starting from 1, sequentially increasing by increments of 1). For the case were rows with `NA` are automatically omitted by the model function, the used indices are guessed based on the row names of the model matrix and then used for accessing the `ranker` variable. However, this may lead to issues if the row names do not correspond to ordinary integer indexes. 
+#' @details NOTE: Be careful with automatically omitted rows in models. Only models with data with ordinary indexes are supported (starting from 1, sequentially increasing by increments of 1). For the case were rows with `NA` are automatically omitted by the model function, the used indices are guessed based on the row names of the model matrix and then used for accessing the `ranker` variable. However, this may lead to issues if the row names do not correspond to ordinary integer indexes. For example, if a model such as lm uses the default `na.omit` action and removes rows, the data in the model might not be consistent with the `ranker` vector anymore.   
 #' @usage contribution(object, ranker, correction = TRUE, type = "CI", intercept = "exclude")
 #'
 #' 
@@ -84,7 +84,7 @@
 #' contrib.svy = contribution(fit.svy, housing$income)
 #' 
 #' 
-#' # adopted from the `coxph` example in survival package 
+#' # adapted from the `coxph` example in survival package 
 #' testcph <- data.frame(time = c(4,3,1,1,2,2,3), 
 #'               status = c(1,1,1,0,1,1,0), 
 #'               x      = c(0,2,1,1,1,0,0), 

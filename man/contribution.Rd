@@ -47,7 +47,7 @@ Per default, the intercept in models is excluded, but this can be changed by set
 
 Use \code{\link[=decomposition]{decomposition()}} function directly to manually specify coefficients, outcomes, and model matrices for arbitrary models.
 
-NOTE: Only models with data with ordinary indexes are supported (starting from 1, sequentially increasing by increments of 1). For the case were rows with \code{NA} are automatically omitted by the model function, the used indices are guessed based on the row names of the model matrix and then used for accessing the \code{ranker} variable. However, this may lead to issues if the row names do not correspond to ordinary integer indexes.
+NOTE: Be careful with automatically omitted rows in models. Only models with data with ordinary indexes are supported (starting from 1, sequentially increasing by increments of 1). For the case were rows with \code{NA} are automatically omitted by the model function, the used indices are guessed based on the row names of the model matrix and then used for accessing the \code{ranker} variable. However, this may lead to issues if the row names do not correspond to ordinary integer indexes. For example, if a model such as lm uses the default \code{na.omit} action and removes rows, the data in the model might not be consistent with the \code{ranker} vector anymore.
 }
 \section{Warning}{
 
@@ -98,7 +98,7 @@ fit.svy = survey::svyglm(bmi ~ tenure+height+weight, design = des)
 contrib.svy = contribution(fit.svy, housing$income)
 
 
-# adopted from the `coxph` example in survival package 
+# adapted from the `coxph` example in survival package 
 testcph <- data.frame(time = c(4,3,1,1,2,2,3), 
               status = c(1,1,1,0,1,1,0), 
               x      = c(0,2,1,1,1,0,0), 

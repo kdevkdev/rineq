@@ -35,7 +35,7 @@
 #' @references Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalities in health: measurement, computation, and statistical inference. Journal of econometrics, 77(1), 87-103.
 #' @references O'Donnel, O., O'Neill S., Van Ourti T., & Walsh B. (2016). Conindex: Estimation of Concentration Indices. The Stata Journal, 16(1): 112-138.
 #' @references O’Donnell, O., Van Doorslaer, E. , Wagstaff, A., Lindelow, M., 2008. Analyzing Health Equity Using Household Survey Data: A Guide to Techniques and Their Implementation, World Bank Publications. The World Bank.
-#' @references van Ourti, T., 2004.Measuring horizontal inequity in Belgian health care using a Gaussian random e¡ects two part count data model. Health Economics, 13: 705–724.
+#' @references van Ourti, T., 2004. Measuring horizontal inequity in Belgian health care using a Gaussian random effects two part count data model. Health Economics, 13: 705–724.
 #' @importFrom stats na.omit weighted.mean lm coef cov.wt
 #' @export
 #' @examples
@@ -49,13 +49,10 @@
 #' 
 #' # obtain confidence intervals
 #' confint(ci.bmi, level = 0.95) 
-#'
 #' plot(ci.bmi)
 #' 
 #' # Wagstaff type with binary outcome and robust standard errors 
 #' # that should correspond to Stata (depends on 'sandwich'):
-#' 
-#' 
 #' ci.bmi.b <- ci(housing$income, housing$high.bmi, type = "CIw", robust_se = TRUE, 
 #'    rse_type = "HC1")
 #' 
@@ -118,6 +115,7 @@ ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "C
   {
   	# follow 8.12 in world bank doc to also get  standard error
     cdf$wo = cdf$weights*cdf$outcome
+    
   	mod_lm = lm(outcome ~ weighted_rank, data = cdf, weights = cdf$weights)
   	
   	# calculate the index using the delta method
@@ -210,12 +208,14 @@ ci <- function(ineqvar, outcome, weights = NULL, type = c("CI", "CIg", "CIc", "C
             
   } else if (type == "CIc"){
 
+    # Erreygers correction
     f = 4 * mean_outcome / (max(outcome, na.rm = TRUE) - min(outcome, na.rm = TRUE))
     concentration_index <- concentration_index * f
     varC = varC* f^2 # treat as constant
 
   } else if(type == "CIw"){
-      
+    
+    # Wagstaff
     concentration_index <- concentration_index/(1-mean_outcome)
     varC = varC * (1/(1-mean_outcome))^2 # treat as constant
   }

@@ -71,13 +71,10 @@ ci.bmi$concentration_index
 
 # obtain confidence intervals
 confint(ci.bmi, level = 0.95) 
-
 plot(ci.bmi)
 
 # Wagstaff type with binary outcome and robust standard errors 
 # that should correspond to Stata (depends on 'sandwich'):
-
-
 ci.bmi.b <- ci(housing$income, housing$high.bmi, type = "CIw", robust_se = TRUE, 
    rse_type = "HC1")
 
@@ -93,5 +90,5 @@ O'Donnel, O., O'Neill S., Van Ourti T., & Walsh B. (2016). Conindex: Estimation 
 
 O’Donnell, O., Van Doorslaer, E. , Wagstaff, A., Lindelow, M., 2008. Analyzing Health Equity Using Household Survey Data: A Guide to Techniques and Their Implementation, World Bank Publications. The World Bank.
 
-van Ourti, T., 2004.Measuring horizontal inequity in Belgian health care using a Gaussian random e¡ects two part count data model. Health Economics, 13: 705–724.
+van Ourti, T., 2004. Measuring horizontal inequity in Belgian health care using a Gaussian random effects two part count data model. Health Economics, 13: 705–724.
 }
