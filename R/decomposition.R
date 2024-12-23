@@ -30,12 +30,21 @@ decomposition <- function(outcome, betas, mm, ranker, wt, correction, citype = "
   
   
     # define an index vector for the rows that are actually used in the model, rownames are strings that should be converted to integer
+    # this functionality is very-bug prone and the individual implementation of rownames could vary a lot between modeling packages
+    # but keep for compatibility, try to check as good as we can
     rows <- as.numeric(rownames(mm))
     
-    if(any(is.na(ranker[rows])) || length(rows) != length(ranker)){
-      stop("Rownames of modelmatrix are invalid ranker indeces, re-run the model with data with ordinary integer indeces as row names. Possibly caused by rows being automatically omitted in the model estimation, make sure to manually remove NAs before running the model.") 
+    if(is.null(rows) &&  length(rows) == 0 ){
+      # no rokwnames set -> generate sequental indeces
+      rows = 1:NROW(mm)
     } 
-              
+    
+    if(any(is.na(ranker[rows]))){
+      stop("Rownames of modelmatrix are invalid ranker indeces, re-run the model with data without any or  with ordinary integer indeces as row names. Possibly caused by rows being automatically omitted in the model estimation, make sure to manually remove NAs before running the model.") 
+    } 
+    if(length(rows) != length(ranker)){
+      stop("Length of rownames of model matrix does not correspond to ranker length, re-run the model with data without any or with ordinary integer indeces as row names. Possibly caused by rows being automatically omitted in the model estimation, make sure to manually remove NAs before running the model.") 
+    }               
 
     # correct the sign for the partial outcomes when requested
     corrected <- rep(FALSE, ncol(mm))
