@@ -12,6 +12,7 @@
 #' @param citype Character, CI type to be calculated, defaults to `CI`. Use `CIw` for binary outcomes. 
 #'
 #' @return S3 object of class decomposition
+#' @export
 #' @importFrom stats confint
 #' 
 #' @examples
@@ -20,7 +21,6 @@
 #'                        mtcars$hp, wt = rep(1, nrow(mtcars)), correction = FALSE) 
 #' summary(decomp)
 #' 
-#' @export
 decomposition <- function(outcome, betas, mm, ranker, wt, correction, citype = "CI") {    
   
   

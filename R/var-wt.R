@@ -5,12 +5,12 @@
 #' @param na.rm If `TRUE`, indices where `x` is NA will be removed
 #'
 #' @return A numeric vector containing weighted variance of the elements of `x`
+#' @export 
 #' 
 #' @examples
 #' x <- sample(1:10, size = 10, replace = TRUE)
 #' x.weight <- seq(0, 1, length.out = 10)
 #' var_wt(x, wt = x.weight)
-#' @export 
 var_wt<- function(x, wt, na.rm = FALSE) {
   
   if(na.rm){

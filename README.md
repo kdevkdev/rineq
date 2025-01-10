@@ -7,11 +7,11 @@ The `rineq` package provides functions to  calculate the relative, generalized, 
 
 #### Available functions
 
-Concentration index
+Concentration index - main functions
+
 | Function           | Description                                                                         |
 |--------------------|-------------------------------------------------------------------------------------|
 | `ci`               | Calculate the relative, generalized, or Erreygers corrected concentration index     |
-| `correct_sign`     | Correct negative values in the health variable                                      |
 | `contribution`     | Decompose the Relative Concentration Index into its components                      |
 
 
