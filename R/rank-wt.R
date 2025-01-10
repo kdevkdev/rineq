@@ -37,7 +37,7 @@ rank_wt <- function(x, wt){
 #' @param wt weights
 #'
 #' @description In the case of ties, the ordinary `rank_wt()` function uses the order in the original data. 
-#' This is the same approach as in the stata code provided by O’Donnell et al. (2008) in the original World Bank publication, 
+#' This is the same approach as in the Stata code provided by O’Donnell et al. (2008) in the original World Bank publication, 
 #' but depends on the arbitrary initial order in the data 
 #' The Stat conindex code however uses uses the generalized weighted rank implementation published by van Ourti (2004). For Stata compatibility use `rank_gwt()`
 #' 
@@ -45,7 +45,7 @@ rank_wt <- function(x, wt){
 #' in the integer case. Instead, this this implementation uses the next lowest `x` value, respectively the next lowest rank, to calculate the 
 #' proportion of the inequality variable up to the respective value
 #'
-#' @references van Ourti, T., 2004.Measuring horizontal inequity in Belgian health care using a Gaussian random e¡ects two part count data model. Health Economics, 13: 705–724.
+#' @references van Ourti, T., 2004. Measuring horizontal inequity in Belgian health care using a Gaussian random effects two part count data model. Health Economics, 13: 705–724.
 #' @return A numeric vector containing weighted fractional ranks of the elements of \code{x}.
 #' @export
 #'

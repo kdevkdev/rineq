@@ -15,7 +15,7 @@
 #' 
 #' `corrected_value()`: returns the corrected value if passed the result of `correct_sign().
 #' 
-#' `is_corrected()`: returns `TRUE` if a modifications was made and `FALSE` otherwiss.  Takes as argument the result of `correct_sign()`, 
+#' `is_corrected()`: returns `TRUE` if a modifications was made and `FALSE` otherwise.  Takes as argument the result of `correct_sign()`, 
 #' 
 #' @md
 #' 

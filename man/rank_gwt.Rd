@@ -16,7 +16,7 @@ A numeric vector containing weighted fractional ranks of the elements of \code{x
 }
 \description{
 In the case of ties, the ordinary \code{rank_wt()} function uses the order in the original data.
-This is the same approach as in the stata code provided by O’Donnell et al. (2008) in the original World Bank publication,
+This is the same approach as in the Stata code provided by O’Donnell et al. (2008) in the original World Bank publication,
 but depends on the arbitrary initial order in the data
 The Stat conindex code however uses uses the generalized weighted rank implementation published by van Ourti (2004). For Stata compatibility use \code{rank_gwt()}
 }
@@ -31,5 +31,5 @@ x.weight <- seq(0, 1, length.out = 10)
 rank_gwt(x, wt = x.weight)
 }
 \references{
-van Ourti, T., 2004.Measuring horizontal inequity in Belgian health care using a Gaussian random e¡ects two part count data model. Health Economics, 13: 705–724.
+van Ourti, T., 2004. Measuring horizontal inequity in Belgian health care using a Gaussian random effects two part count data model. Health Economics, 13: 705–724.
 }

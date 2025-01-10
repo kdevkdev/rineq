@@ -26,7 +26,7 @@ is_corrected(x)
 
 \code{corrected_value()}: returns the corrected value if passed the result of `correct_sign().
 
-\code{is_corrected()}: returns \code{TRUE} if a modifications was made and \code{FALSE} otherwiss.  Takes as argument the result of \code{correct_sign()},
+\code{is_corrected()}: returns \code{TRUE} if a modifications was made and \code{FALSE} otherwise.  Takes as argument the result of \code{correct_sign()},
 }
 \description{
 The Relative Concentration Index is not bonded between \eqn{[-1,1]} if the health variable contains both negative and positive values. This function corrects for this either by imputing a value of 0 for all negative values or by subtracting the minimum value.
