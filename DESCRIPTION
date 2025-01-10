@@ -1,7 +1,7 @@
 Package: rineq
 Title: Concentration Index and Decomposition for Health Inequalities
-Version: 0.2.4
-Date: 2023-04-16
+Version: 0.3.0
+Date: 2025-01-10
 Authors@R: c(person("Brecht", "Devleesschauwer", role = c("aut", "cph"),
 	                email = "brechtdv@gmail.com"),
              person("Saveria", "Willimès", role = c("aut", "cph"),
@@ -32,4 +32,5 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Encoding: UTF-8
 Language: en-Us
-URL: https://github.com/kdevkdev/rineq/
+URL: https://github.com/kdevkdev/rineq/, https://github.com/kdevkdev/rineq
+BugReports: https://github.com/kdevkdev/rineq/issues
